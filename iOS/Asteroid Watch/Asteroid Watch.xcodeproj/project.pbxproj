@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		AD164B0C25BB51360035B473 /* Asteroid_WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD164B0B25BB51360035B473 /* Asteroid_WatchApp.swift */; };
-		AD164B0E25BB51360035B473 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD164B0D25BB51360035B473 /* ContentView.swift */; };
 		AD164B1025BB51360035B473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD164B0F25BB51360035B473 /* Assets.xcassets */; };
 		AD164B1325BB51360035B473 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD164B1225BB51360035B473 /* Preview Assets.xcassets */; };
-		AD164B1525BB51360035B473 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD164B1425BB51360035B473 /* Persistence.swift */; };
-		AD164B1825BB51360035B473 /* Asteroid_Watch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD164B1625BB51360035B473 /* Asteroid_Watch.xcdatamodeld */; };
 		AD164B2325BB51370035B473 /* Asteroid_WatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD164B2225BB51370035B473 /* Asteroid_WatchTests.swift */; };
 		AD164B2E25BB51370035B473 /* Asteroid_WatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD164B2D25BB51370035B473 /* Asteroid_WatchUITests.swift */; };
+		ADB3A14525BF5BCE00528F3D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3A14425BF5BCE00528F3D /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,11 +35,8 @@
 /* Begin PBXFileReference section */
 		AD164B0825BB51350035B473 /* Asteroid Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asteroid Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD164B0B25BB51360035B473 /* Asteroid_WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid_WatchApp.swift; sourceTree = "<group>"; };
-		AD164B0D25BB51360035B473 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AD164B0F25BB51360035B473 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD164B1225BB51360035B473 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AD164B1425BB51360035B473 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		AD164B1725BB51360035B473 /* Asteroid_Watch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Asteroid_Watch.xcdatamodel; sourceTree = "<group>"; };
 		AD164B1925BB51360035B473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD164B1E25BB51370035B473 /* Asteroid WatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Asteroid WatchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD164B2225BB51370035B473 /* Asteroid_WatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid_WatchTests.swift; sourceTree = "<group>"; };
@@ -49,6 +44,7 @@
 		AD164B2925BB51370035B473 /* Asteroid WatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Asteroid WatchUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD164B2D25BB51370035B473 /* Asteroid_WatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid_WatchUITests.swift; sourceTree = "<group>"; };
 		AD164B2F25BB51370035B473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADB3A14425BF5BCE00528F3D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				AD164B0B25BB51360035B473 /* Asteroid_WatchApp.swift */,
-				AD164B0D25BB51360035B473 /* ContentView.swift */,
 				AD164B0F25BB51360035B473 /* Assets.xcassets */,
-				AD164B1425BB51360035B473 /* Persistence.swift */,
 				AD164B1925BB51360035B473 /* Info.plist */,
-				AD164B1625BB51360035B473 /* Asteroid_Watch.xcdatamodeld */,
 				AD164B1125BB51360035B473 /* Preview Content */,
+				ADB3A14425BF5BCE00528F3D /* MainView.swift */,
 			);
 			path = "Asteroid Watch";
 			sourceTree = "<group>";
@@ -265,10 +259,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD164B1825BB51360035B473 /* Asteroid_Watch.xcdatamodeld in Sources */,
-				AD164B1525BB51360035B473 /* Persistence.swift in Sources */,
-				AD164B0E25BB51360035B473 /* ContentView.swift in Sources */,
 				AD164B0C25BB51360035B473 /* Asteroid_WatchApp.swift in Sources */,
+				ADB3A14525BF5BCE00528F3D /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,19 +580,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		AD164B1625BB51360035B473 /* Asteroid_Watch.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				AD164B1725BB51360035B473 /* Asteroid_Watch.xcdatamodel */,
-			);
-			currentVersion = AD164B1725BB51360035B473 /* Asteroid_Watch.xcdatamodel */;
-			path = Asteroid_Watch.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = AD164B0025BB51350035B473 /* Project object */;
 }
