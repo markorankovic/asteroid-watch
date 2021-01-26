@@ -1,4 +1,4 @@
-public struct Date: Codable, Comparable {
+public struct Date: Codable, Comparable, Hashable {
     
     public static func < (lhs: Date, rhs: Date) -> Bool {
         lhs.day + lhs.month * 30 + lhs.year * 365 < rhs.day + rhs.month * 30 + rhs.year * 365

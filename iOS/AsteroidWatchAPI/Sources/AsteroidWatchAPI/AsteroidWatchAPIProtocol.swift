@@ -1,11 +1,11 @@
 import SwiftUI
 
-enum AsteroidWatchAPIResult {
+public enum AsteroidWatchAPIResult {
     case asteroids([Asteroid])
     case error(APIError)
 }
 
-protocol AsteroidWatchAPIProtocol {
+public protocol AsteroidWatchAPIProtocol {
     func getAsteroids(dateRange: ClosedRange<Date>) -> Future<[Asteroid], APIError>
     
 //    func getAsteroids1(dateRange: ClosedRange<Date>) -> Future<[Asteroid], APIError>
