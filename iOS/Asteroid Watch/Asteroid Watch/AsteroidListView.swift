@@ -12,9 +12,11 @@ struct AsteroidListView: View {
     let asteroids: [Asteroid]
     
     var body: some View {
-        VStack(alignment: .leading) {
-            ForEach(asteroids, id: \.self) {
-                AsteroidView(asteroid: $0)
+        ScrollView {
+            VStack(alignment: .leading) {
+                ForEach(asteroids, id: \.self) {
+                    AsteroidView(asteroid: $0).padding()
+                }
             }
         }
     }

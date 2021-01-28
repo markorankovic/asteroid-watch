@@ -9,7 +9,7 @@ public struct MockAPI: AsteroidWatchAPIProtocol {
             diameter: 30,
             missDistance: 3000,
             velocity: 1000,
-            date: Date.create(day: 26, month: 5, year: 2021),
+            date: Date.create(day: 29, month: 1, year: 2021),
             isHazardous: false
         )
     ]

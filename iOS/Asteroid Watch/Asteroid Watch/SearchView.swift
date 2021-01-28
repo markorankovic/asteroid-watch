@@ -69,6 +69,7 @@ struct SearchView: View {
                         },
                         receiveValue: { asteroids in
                             // Transition to asteroid list
+                            print(asteroids)
                             self.asteroids = asteroids
                         }
                     ).store(in: &bag)
