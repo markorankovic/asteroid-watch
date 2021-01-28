@@ -36,7 +36,7 @@ struct SearchView: View {
     @State var startDate: Foundation.Date = Date()
     @State var endDate: Foundation.Date = Date()
         
-    let api = NASAAPI()
+    let api = NASAAPI() // To be used statically
     
     @State var asteroids: [Asteroid] = []
     
@@ -58,17 +58,14 @@ struct SearchView: View {
                     api.getAsteroids(
                         dateRange: .init(
                             uncheckedBounds: (
-                                AsteroidWatchAPI.Date(
-                                    day: 23, month: 5, year: 2021
-                                ),
-                                AsteroidWatchAPI.Date(
-                                    day: 27, month: 5, year: 2021
-                                )
+                                startDate,
+                                endDate
                             )
                         )
                     ).sink(
                         receiveCompletion: { error in
                             // Handle error
+                            print(error)
                         },
                         receiveValue: { asteroids in
                             // Transition to asteroid list

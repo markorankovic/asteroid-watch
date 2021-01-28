@@ -9,10 +9,10 @@ class MockAPITests: XCTestCase {
     
     func test_asteroids() {
         let exp = expectation(description: "")
-        
+                
         let dateRange = ClosedRange<AsteroidWatchAPI.Date>.init(uncheckedBounds: (
-            lower: Date(day: 23, month: 5, year: 2021),
-            upper: Date(day: 27, month: 5, year: 2021)
+            lower: Date.create(day: 23, month: 5, year: 2021)!,
+            upper: Date.create(day: 27, month: 5, year: 2021)!
         ))
         let futureAsteroids = mockAPI.getAsteroids(
             dateRange: dateRange

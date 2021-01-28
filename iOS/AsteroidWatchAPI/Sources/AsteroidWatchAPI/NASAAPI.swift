@@ -41,15 +41,6 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
         return neos.map({ neo in
             print(neo.close_approach_data[0].close_approach_date)
             let date = dateFormatter.date(from: neo.close_approach_data[0].close_approach_date)
-            var year: Int?; var month: Int?; var day: Int?
-            if let date = date {
-                dateFormatter.dateFormat = "yyyy"
-                year = Int(dateFormatter.string(from: date))
-                dateFormatter.dateFormat = "MM"
-                month = Int(dateFormatter.string(from: date))
-                dateFormatter.dateFormat = "dd"
-                day = Int(dateFormatter.string(from: date))
-            }
             
             let diameter = (neo.estimated_diameter.meters.estimated_diameter_min + neo.estimated_diameter.meters.estimated_diameter_max) / 2
                         
@@ -63,7 +54,7 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
                 diameter: diameter,
                 missDistance: missDistance,
                 velocity: velocity,
-                date: (day != nil && month != nil && year != nil) ? Date(day: day!, month: month!, year: year!) : nil,
+                date: date,
                 isHazardous: neo.is_potentially_hazardous_asteroid
             )
 
@@ -73,16 +64,22 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
     
     public init() { }
     
+    private let formatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "yyyy-MM-dd"
+        return f
+    }()
+    
     public func getAsteroids(dateRange: ClosedRange<Date>) -> Future<[Asteroid], APIError> {
         
         let query: [URLQueryItem] = [
             URLQueryItem(
                 name: "start_date",
-                value: "\(dateRange.lowerBound.year)-\(dateRange.lowerBound.month >= 10 ? "0\(dateRange.lowerBound.month)" : "\(dateRange.lowerBound.month)")-\(dateRange.lowerBound.day)"
+                value: formatter.string(from: dateRange.lowerBound)
             ),
             URLQueryItem(
                 name: "end_date",
-                value: "\(dateRange.upperBound.year)-\(dateRange.upperBound.month >= 10 ? "0\(dateRange.upperBound.month)" : "\(dateRange.upperBound.month)")-\(dateRange.upperBound.day)"
+                value: formatter.string(from: dateRange.upperBound)
             ),
             URLQueryItem(
                 name: "api_key",
@@ -91,30 +88,34 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
         ]
         
         guard var c = URLComponents(string: baseURL + endpoint) else {
-            fatalError()
+            return Future { promise in
+                return promise(.failure(.someError("Adding url components error")))
+            }
         }
         c.queryItems = query
-            
+        
         guard let url = c.url else {
-            fatalError()
+            return Future { promise in
+                return promise(.failure(.someError("Getting url from components error")))
+            }
         }
         
         return request(url: url)
     }
-        
+    
     func request(url: URL) -> Future<[Asteroid], APIError> {
         return Future<[Asteroid], APIError> { promise in
             var req = URLRequest(url: url)
             req.allHTTPHeaderFields = ["Content-Type": "application/json"]
             
-            URLSession.shared.dataTaskPublisher(for: req).sink(receiveCompletion: { _ in
-                return promise(.failure(.someError))
+            URLSession.shared.dataTaskPublisher(for: req).sink(receiveCompletion: { res in
+                return promise(.failure(.someError("URL error")))
             }, receiveValue: { value in
                 do {
                     let object = try JSONDecoder().decode(NASAObject.self, from: value.data)
                     return promise(.success(nasaObjectToAsteroids(object)))
                 } catch {
-                    return promise(.failure(.someError))
+                    return promise(.failure(.someError("3rd Party API Error")))
                 }
             }).store(in: &s)
         }

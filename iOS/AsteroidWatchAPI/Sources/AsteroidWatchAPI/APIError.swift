@@ -1,3 +1,3 @@
 public enum APIError: Error {
-    case someError
+    case someError(String)
 }
