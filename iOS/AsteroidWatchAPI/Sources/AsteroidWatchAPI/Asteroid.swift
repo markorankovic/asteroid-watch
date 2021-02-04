@@ -6,7 +6,7 @@ public struct Asteroid: Codable, Hashable {
     public var velocity: Double
     public var date: Date?
     public var isHazardous: Bool
-    
+            
     public init(
         id: String,
         name: String,

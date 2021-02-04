@@ -12,10 +12,15 @@ struct AsteroidListView: View {
     let asteroids: [Asteroid]
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                ForEach(asteroids, id: \.self) {
-                    AsteroidView(asteroid: $0).padding()
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    NavigationLink(destination: SearchView()) {
+                        Text("Back").padding()
+                    }
+                    ForEach(asteroids, id: \.self) {
+                        AsteroidView(asteroid: $0).padding()
+                    }
                 }
             }
         }

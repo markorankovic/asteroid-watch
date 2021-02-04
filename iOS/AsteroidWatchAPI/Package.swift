@@ -13,15 +13,16 @@ let package = Package(
             targets: ["AsteroidWatchAPI"]),
     ],
     dependencies: [
+        .package(url: "../GeometryAPI", from: "1.0.0")
     ],
     targets: [
         .target(
             name: "AsteroidWatchAPI",
-            dependencies: []
+            dependencies: ["GeometryAPI"]
         ),
         .testTarget(
             name: "AsteroidWatchAPITests",
-            dependencies: ["AsteroidWatchAPI"],
+            dependencies: ["AsteroidWatchAPI", "GeometryAPI"],
             resources: [
               .process("Resources")
             ]

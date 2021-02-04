@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Timeline
+   version = "3.0">
+   <TimelineItems>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marko/Desktop/asteroid-watch/iOS/AsteroidWatchAPI/Tests/AsteroidWatchAPITests/test.playground#CharacterRangeLen=9&amp;CharacterRangeLoc=316&amp;EndingColumnNumber=0&amp;EndingLineNumber=11&amp;StartingColumnNumber=1&amp;StartingLineNumber=10&amp;Timestamp=634049767.776951"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marko/Desktop/asteroid-watch/iOS/AsteroidWatchAPI/Tests/AsteroidWatchAPITests/test.playground#CharacterRangeLen=10&amp;CharacterRangeLoc=586&amp;EndingColumnNumber=0&amp;EndingLineNumber=18&amp;StartingColumnNumber=1&amp;StartingLineNumber=17&amp;Timestamp=634049767.777077"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marko/Desktop/asteroid-watch/iOS/AsteroidWatchAPI/Tests/AsteroidWatchAPITests/test.playground#CharacterRangeLen=3&amp;CharacterRangeLoc=1788&amp;EndingColumnNumber=8&amp;EndingLineNumber=48&amp;StartingColumnNumber=5&amp;StartingLineNumber=48&amp;Timestamp=634049767.777171"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marko/Desktop/asteroid-watch/iOS/AsteroidWatchAPI/Tests/AsteroidWatchAPITests/test.playground#CharacterRangeLen=34&amp;CharacterRangeLoc=2202&amp;EndingColumnNumber=0&amp;EndingLineNumber=61&amp;StartingColumnNumber=0&amp;StartingLineNumber=60&amp;Timestamp=634049767.777261"
+         lockedSize = "{199, 156}"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/marko/Desktop/asteroid-watch/iOS/AsteroidWatchAPI/Tests/AsteroidWatchAPITests/test.playground#CharacterRangeLen=8&amp;CharacterRangeLoc=2207&amp;EndingColumnNumber=13&amp;EndingLineNumber=60&amp;StartingColumnNumber=5&amp;StartingLineNumber=60&amp;Timestamp=634049767.777352"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+   </TimelineItems>
+</Timeline>
