@@ -8,30 +8,6 @@
 import SwiftUI
 import AsteroidWatchAPI
 
-//class AsteroidService: ObservableObject {
-//
-//    @Published var asteroids: [Asteroid] = []
-//    @Published var error: String?
-//
-//    let api: AsteroidWatchAPIProtocol
-//    var bag: Set<AnyCancellable> = []
-//
-//    init(api: AsteroidWatchAPIProtocol) {
-//        self.api = api
-//    }
-//
-//    func request(_ range: ClosedRange<AsteroidWatchAPI.Date>) {
-//        api.getAsteroids(dateRange: range).sink { [weak self] error in
-//            self?.error = "Error: \(error)"
-//            self?.asteroids = []
-//        }
-//        receiveValue: { [weak self] asteroids in
-//            self?.asteroids = asteroids
-//        }
-//        .store(in: &bag)
-//    }
-//}
-
 struct SearchView: View {
     @State var startDate: Foundation.Date = Date()
     @State var endDate: Foundation.Date = Date()

@@ -15,11 +15,8 @@ struct AsteroidListView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    NavigationLink(destination: SearchView()) {
-                        Text("Back").padding()
-                    }
                     ForEach(asteroids, id: \.self) {
-                        AsteroidView(asteroid: $0).padding()
+                        AsteroidViewItem(asteroid: $0).padding()
                     }
                 }
             }

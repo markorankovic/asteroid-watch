@@ -1,0 +1,37 @@
+//
+//  AsteroidViewItem.swift
+//  Asteroid Watch
+//
+//  Created by Marko Rankovic on 06/02/2021.
+//
+
+import SwiftUI
+import AsteroidWatchAPI
+
+struct AsteroidViewItem: View {
+    let asteroid: Asteroid
+    
+    var body: some View {
+        SpriteView(
+            scene: AsteroidViewItemScene(
+                asteroid: asteroid
+            )
+        ).frame(width: 250, height: 120, alignment: .center)
+    }
+}
+
+struct AsteroidViewItem_Previews: PreviewProvider {
+    static var previews: some View {
+        AsteroidViewItem(
+            asteroid: Asteroid(
+                id: "2517681",
+                name: "2015 DE198",
+                diameter: (1081.533506775 + 483.6764882185) / 2,
+                missDistance: 28047702.990978837,
+                velocity: 45093.5960746662,
+                date: nil,
+                isHazardous: true
+            )
+        )
+    }
+}
