@@ -31,8 +31,8 @@ public enum AsteroidGenerator {
         return view.texture(from: scene)
     }
     
-    public static func generateAsteroid() -> SKShapeNode? {
-        let pointSet = CGSize(width: 100, height: 100).randomPoints(count: 10)
+    public static func generateAsteroid(size: CGSize) -> SKShapeNode? {
+        let pointSet = CGSize(width: size.width, height: size.height).randomPoints(count: 10)
         guard let convexHull = pointSet.convexHull else { return nil }
         let shapeNode = SKShapeNode(path: convexHull)
         shapeNode.strokeColor = .black

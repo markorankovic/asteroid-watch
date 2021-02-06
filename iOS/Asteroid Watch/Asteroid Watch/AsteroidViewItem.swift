@@ -16,7 +16,10 @@ struct AsteroidViewItem: View {
             scene: AsteroidViewItemScene(
                 asteroid: asteroid
             )
-        ).frame(width: 250, height: 120, alignment: .center)
+        )
+        .aspectRatio(
+            .init(width: 400, height: 300), contentMode: .fit
+        )
     }
 }
 

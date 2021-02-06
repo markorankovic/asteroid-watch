@@ -15,7 +15,9 @@ struct AsteroidListView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(asteroids, id: \.self) {
+                    ForEach(asteroids.sorted(by: {
+                        $0.isHazardous || $1.isHazardous
+                    }), id: \.self) {
                         AsteroidViewItem(asteroid: $0).padding()
                     }
                 }

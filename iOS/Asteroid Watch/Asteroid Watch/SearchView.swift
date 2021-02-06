@@ -16,6 +16,8 @@ struct SearchView: View {
     
     @State var asteroids: [Asteroid] = []
     
+    @State var errorOccurred: Bool = false
+    
     var body: some View {
         if asteroids.isEmpty {
             VStack {
@@ -42,6 +44,7 @@ struct SearchView: View {
                         receiveCompletion: { error in
                             // Handle error
                             print(error)
+                            errorOccurred = true
                         },
                         receiveValue: { asteroids in
                             // Transition to asteroid list
@@ -49,6 +52,15 @@ struct SearchView: View {
                             self.asteroids = asteroids
                         }
                     ).store(in: &bag)
+                }
+                .alert(isPresented: $errorOccurred) {
+                    Alert(
+                        title: Text("Error"),
+                        message: Text("Error occurred."),
+                        dismissButton: Alert.Button.destructive(Text("Ok")) {
+                            errorOccurred = false
+                        }
+                    )
                 }
             }
         } else {
