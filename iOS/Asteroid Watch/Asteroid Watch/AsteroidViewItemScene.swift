@@ -19,7 +19,9 @@ public class AsteroidViewItemScene: SKScene {
         let asteroidNode = (childNode(withName: "asteroid") as? SKSpriteNode)!
         self.asteroid = VisualAsteroid(
             asteroid: asteroid,
-            shapeNode: AsteroidGenerator.generateAsteroid(size: asteroidNode.frame.size) ?? SKShapeNode()
+            shapeNode: AsteroidGenerator.generateAsteroid(
+                size: asteroidNode.frame.size
+            ) ?? SKShapeNode()
         )
     }
     
@@ -30,7 +32,9 @@ public class AsteroidViewItemScene: SKScene {
     func addStars() {
         let parent = SKNode()
         for _ in 0..<Int.random(in: 10...100) {
-            let node: SKShapeNode = .init(circleOfRadius: CGFloat.random(in: 0.1..<3))
+            let node: SKShapeNode = .init(
+                circleOfRadius: CGFloat.random(in: 0.1..<3)
+            )
             node.position = .init(
                 x: CGFloat.random(in: 0..<400) - 400/2,
                 y: CGFloat.random(in: 0..<300) - 300/2
@@ -49,13 +53,16 @@ public class AsteroidViewItemScene: SKScene {
     public override func didMove(to view: SKView) {
         guard let asteroid = asteroid else { return }
         
-        addStars()
+        //addStars()
         
         let asteroidNode = (childNode(withName: "asteroid") as? SKSpriteNode)!
         
         asteroidNode.removeFromParent()
         asteroid.shapeNode.zPosition = -1
-        asteroid.shapeNode.position = .init(x: asteroidNode.position.x - asteroid.shapeNode.frame.width/2, y: asteroidNode.position.y - asteroid.shapeNode.frame.height/2)
+        asteroid.shapeNode.position = .init(
+            x: asteroidNode.position.x - asteroid.shapeNode.frame.width/2,
+            y: asteroidNode.position.y - asteroid.shapeNode.frame.height/2
+        )
         addChild(asteroid.shapeNode)
         
         (childNode(withName: "name") as? SKLabelNode)?.text = asteroid.asteroid.name

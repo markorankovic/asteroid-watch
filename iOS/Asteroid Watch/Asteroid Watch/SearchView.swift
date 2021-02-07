@@ -26,12 +26,20 @@ struct SearchView: View {
                     "Start Date",
                     selection: $startDate,
                     displayedComponents: .date
-                )
+                ).onChange(of: startDate, perform: { _ in
+                    if startDate > endDate {
+                        endDate = startDate
+                    }
+                })
                 DatePicker(
                     "End Date",
                     selection: $endDate,
                     displayedComponents: .date
-                )
+                ).onChange(of: endDate, perform: { _ in
+                    if startDate > endDate {
+                        startDate = endDate
+                    }
+                })
                 Button("Search") {
                     api.getAsteroids(
                         dateRange: .init(
@@ -48,8 +56,10 @@ struct SearchView: View {
                         },
                         receiveValue: { asteroids in
                             // Transition to asteroid list
-                            print(asteroids)
-                            self.asteroids = asteroids
+                            print("Received asteroids")
+                            self.asteroids = asteroids.sorted(by: { a1, _ in
+                                a1.isHazardous
+                            })
                         }
                     ).store(in: &bag)
                 }

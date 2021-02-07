@@ -93,12 +93,14 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
             }
         }
         c.queryItems = query
-        
+                
         guard let url = c.url else {
             return Future { promise in
                 return promise(.failure(.someError("Getting url from components error")))
             }
         }
+        
+        print(url)
         
         return request(url: url)
     }
@@ -107,17 +109,24 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
         return Future<[Asteroid], APIError> { promise in
             var req = URLRequest(url: url)
             req.allHTTPHeaderFields = ["Content-Type": "application/json"]
-            
-            URLSession.shared.dataTaskPublisher(for: req).sink(receiveCompletion: { res in
-                return promise(.failure(.someError("URL error")))
-            }, receiveValue: { value in
-                do {
-                    let object = try JSONDecoder().decode(NASAObject.self, from: value.data)
-                    return promise(.success(nasaObjectToAsteroids(object)))
-                } catch {
-                    return promise(.failure(.someError("3rd Party API Error")))
+            print("Prepared for URL session")
+            URLSession.shared.dataTaskPublisher(
+                for: req
+            )
+            .sink(
+                receiveCompletion: { res in
+                    return promise(.failure(.someError("URL error")))
+                },
+                receiveValue: { value in
+                    do {
+                        let object = try JSONDecoder().decode(NASAObject.self, from: value.data)
+                        print("NASA object received")
+                        return promise(.success(nasaObjectToAsteroids(object)))
+                    } catch {
+                        return promise(.failure(.someError("3rd Party API Error")))
+                    }
                 }
-            }).store(in: &s)
+            ).store(in: &s)
         }
     }
 
