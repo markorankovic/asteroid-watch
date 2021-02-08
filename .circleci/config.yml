@@ -1,0 +1,10 @@
+version: 2.1
+
+jobs:
+  build:
+
+    macos:
+      xcode: 12.4.0 # Specify the Xcode version to use
+
+    steps:
+      - checkout
