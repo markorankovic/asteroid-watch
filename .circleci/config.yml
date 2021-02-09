@@ -20,7 +20,7 @@ jobs:
       - store_artifacts:
           path: output
       
-    workflows:
-      build-and-test:
-        jobs:
-          - build-and-test
+workflows:
+  build-and-test:
+    jobs:
+      - build-and-test
