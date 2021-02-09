@@ -15,10 +15,10 @@ jobs:
           SCAN_DEVICE: iPhone 11
           SCAN_SCHEME: Asteroid Watch
 
-    - store_test_results:
-      path: output/scan
-    - store_artifacts:
-      path: output
+      - store_test_results:
+        path: output/scan
+      - store_artifacts:
+        path: output
       
     workflows:
       build-and-test:
