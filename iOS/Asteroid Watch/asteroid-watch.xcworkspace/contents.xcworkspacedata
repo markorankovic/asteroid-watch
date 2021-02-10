@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../AsteroidGenerator/AsteroidGenerator.xcodeproj">
+      location = "group:../GeometryAPI">
    </FileRef>
    <FileRef
-      location = "group:../GeometryAPI">
+      location = "group:../AsteroidGenerator/AsteroidGenerator.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:../AsteroidWatchAPI">

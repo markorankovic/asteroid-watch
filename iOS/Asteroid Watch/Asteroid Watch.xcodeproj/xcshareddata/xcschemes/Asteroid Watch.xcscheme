@@ -38,6 +38,26 @@
                ReferencedContainer = "container:Asteroid Watch.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GeometryAPITests"
+               BuildableName = "GeometryAPITests"
+               BlueprintName = "GeometryAPITests"
+               ReferencedContainer = "container:../GeometryAPI">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AsteroidWatchAPITests"
+               BuildableName = "AsteroidWatchAPITests"
+               BlueprintName = "AsteroidWatchAPITests"
+               ReferencedContainer = "container:../AsteroidWatchAPI">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

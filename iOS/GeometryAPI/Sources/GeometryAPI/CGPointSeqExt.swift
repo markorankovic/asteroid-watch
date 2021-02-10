@@ -117,7 +117,7 @@ extension Sequence where Element == CGPoint {
         return path
     }
     
-    var convexHullPoints: [CGPoint]? {
+    public var convexHullPoints: [CGPoint]? {
         let firstP = pointWithSmallestY
         guard var currentP = firstP else { return nil }
         var previousP: CGPoint = .init(x: currentP.x - 100, y: currentP.y)

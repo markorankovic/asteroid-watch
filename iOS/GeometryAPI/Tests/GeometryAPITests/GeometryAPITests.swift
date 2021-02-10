@@ -1,28 +1,24 @@
 import XCTest
-@testable import GeometryAPI
+import GeometryAPI
 
 import CoreGraphics
 
 final class GeometryAPITests: XCTestCase {
     
-    let randomPoints = PointSet(
-        points: CGSize(
-            width: 400,
-            height: 400
-        ).randomPoints(
-            count: 10
-        )
+    let randomPoints = CGSize(
+        width: 400,
+        height: 400
+    ).randomPoints(
+        count: 10
     )
-        
-    let points = PointSet(
-        points: [
-            CGPoint(x: -100, y: 235 / 2),
-            CGPoint(x: -64, y: 323 / 2),
-            CGPoint(x: -26, y: 432 / 2),
-            CGPoint(x: -25, y: 341 / 2),
-            CGPoint(x: -57, y: 145 / 2),
-        ]
-    )
+
+    let points = [
+        CGPoint(x: -100, y: 235 / 2),
+        CGPoint(x: -64, y: 323 / 2),
+        CGPoint(x: -26, y: 432 / 2),
+        CGPoint(x: -25, y: 341 / 2),
+        CGPoint(x: -57, y: 145 / 2),
+    ]
     
     func test_SmallestY() {
         guard let point = points.pointWithSmallestY else { return XCTFail() }
@@ -37,7 +33,7 @@ final class GeometryAPITests: XCTestCase {
         ]
         
         XCTAssert(
-            PointSet.isCounterClockwise(
+            Array<CGPoint>.isCounterClockwise(
                 p1: points[0],
                 p2: points[1],
                 p3: points[2]
@@ -53,7 +49,7 @@ final class GeometryAPITests: XCTestCase {
         ]
         
         XCTAssertFalse(
-            !PointSet.isCounterClockwise(
+            !Array<CGPoint>.isCounterClockwise(
                 p1: points[0],
                 p2: points[1],
                 p3: points[2]
