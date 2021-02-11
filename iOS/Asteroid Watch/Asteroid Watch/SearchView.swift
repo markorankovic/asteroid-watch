@@ -49,10 +49,12 @@ struct SearchView: View {
                             )
                         )
                     ).sink(
-                        receiveCompletion: { error in
-                            // Handle error
-                            print(error)
-                            errorOccurred = true
+                        receiveCompletion: { completion in
+                            switch completion {
+                            case .failure(_): errorOccurred = true
+                            case .finished:
+                                print("Done with no errors.")
+                            }
                         },
                         receiveValue: { asteroids in
                             // Transition to asteroid list
@@ -74,7 +76,7 @@ struct SearchView: View {
                 }
             }
         } else {
-            AsteroidListView(asteroids: asteroids)
+            InfoView(asteroids: $asteroids)
         }
     }
 }

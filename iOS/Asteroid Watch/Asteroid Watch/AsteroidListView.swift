@@ -9,13 +9,13 @@ import SwiftUI
 import AsteroidWatchAPI
 
 struct AsteroidListView: View {
-    let asteroids: [Asteroid]
-    
+    var asteroids: Binding<[Asteroid]>
+
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(asteroids, id: \.self) {
+                    ForEach(asteroids.wrappedValue, id: \.self) {
                         AsteroidViewItem(asteroid: $0).padding()
                     }
                 }
@@ -26,7 +26,7 @@ struct AsteroidListView: View {
 
 struct AsteroidListView_Previews: PreviewProvider {
     static var previews: some View {
-        AsteroidListView(asteroids: [
+        AsteroidListView(asteroids: Binding.constant([
             Asteroid(
                 id: "2517681",
                 name: "2015 DE198",
@@ -36,6 +36,6 @@ struct AsteroidListView_Previews: PreviewProvider {
                 date: nil,
                 isHazardous: true
             )
-        ])
+        ]))
     }
 }

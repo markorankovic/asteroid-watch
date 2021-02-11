@@ -2,37 +2,8 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
     let baseURL: String = "https://api.nasa.gov"
     let endpoint: String = "/neo/rest/v1/feed"
     let APIKEY = "uxickliHQnKSJqa7sl3gfdWt6Fw1Oct7rzzxDzHB"
-    
-    public struct NASAObject: Codable {
-        var near_earth_objects: [String: [NEO]]
-        struct NEO: Codable {
-            var id: String
-            var name: String
-            var estimated_diameter: EstimatedDiameter
-            struct EstimatedDiameter: Codable {
-                var meters: Meters
-                struct Meters: Codable {
-                    var estimated_diameter_min: Double
-                    var estimated_diameter_max: Double
-                }
-            }
-            var is_potentially_hazardous_asteroid: Bool
-            var close_approach_data: [CloseApproachDataItem]
-            struct CloseApproachDataItem: Codable {
-                var close_approach_date: String
-                var relative_velocity: RelativeVelocity
-                struct RelativeVelocity: Codable {
-                    var kilometers_per_hour: String
-                }
-                var miss_distance: MissDistance
-                struct MissDistance: Codable {
-                    var kilometers: String
-                }
-            }
-        }
-    }
-    
-    func nasaObjectToAsteroids(_ nasaObject: NASAObject) -> [Asteroid] {
+        
+    public static func nasaObjectToAsteroids(_ nasaObject: NASAObject) -> [Asteroid] {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -60,6 +31,20 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
 
             return asteroid
         })
+    }
+    
+    public static func jsonToNASAObject() -> NASAObject? {
+        if let filepath = Bundle.module.url(forResource: "exampleAsteroids", withExtension: "json") {
+            do {
+                let json = try String(contentsOf: filepath).data(using: .utf8)!
+                return try JSONDecoder().decode(NASAObject.self, from: json)
+            } catch {
+                print(error)
+                return nil
+            }
+        } else {
+            return nil
+        }
     }
     
     public init() { }
@@ -121,7 +106,7 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
                     do {
                         let object = try JSONDecoder().decode(NASAObject.self, from: value.data)
                         print("NASA object received")
-                        return promise(.success(nasaObjectToAsteroids(object)))
+                        return promise(.success(NASAAPI.nasaObjectToAsteroids(object)))
                     } catch {
                         return promise(.failure(.someError("3rd Party API Error")))
                     }

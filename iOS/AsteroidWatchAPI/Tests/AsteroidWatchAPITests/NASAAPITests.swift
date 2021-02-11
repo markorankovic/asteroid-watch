@@ -59,7 +59,7 @@ class NASAAPITests: XCTestCase {
         if let filepath = Bundle.module.url(forResource: "exampleAsteroids", withExtension: "json") {
             do {
                 let json = try String(contentsOf: filepath).data(using: .utf8)!
-                _ = try JSONDecoder().decode(NASAAPI.NASAObject.self, from: json)
+                _ = try JSONDecoder().decode(NASAObject.self, from: json)
                 XCTAssert(true)
             } catch {
                 print(error)

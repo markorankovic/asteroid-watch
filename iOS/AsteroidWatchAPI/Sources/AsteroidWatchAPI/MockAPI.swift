@@ -1,18 +1,9 @@
 public struct MockAPI: AsteroidWatchAPIProtocol {
     
-    var isReturningError: Bool = false
-    
-    let asteroids = [
-        Asteroid(
-            id: "grehre",
-            name: "Apollo123",
-            diameter: 30,
-            missDistance: 3000,
-            velocity: 1000,
-            date: Date.create(day: 29, month: 1, year: 2021),
-            isHazardous: false
-        )
-    ]
+    let asteroids: [Asteroid] = {
+        guard let nasaobj = NASAAPI.jsonToNASAObject() else { return [] }
+        return NASAAPI.nasaObjectToAsteroids(nasaobj)
+    }()
     
     public init() { }
     

@@ -18,7 +18,10 @@ let package = Package(
     targets: [
         .target(
             name: "AsteroidWatchAPI",
-            dependencies: ["GeometryAPI"]
+            dependencies: ["GeometryAPI"],
+            resources: [
+              .process("Resources")
+            ]
         ),
         .testTarget(
             name: "AsteroidWatchAPITests",

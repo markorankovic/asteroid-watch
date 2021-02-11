@@ -11,6 +11,8 @@
 		AD0552EC25CEFEF700CB6147 /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = AD0552EB25CEFEF700CB6147 /* Preview Content */; };
 		AD164B0C25BB51360035B473 /* Asteroid_WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD164B0B25BB51360035B473 /* Asteroid_WatchApp.swift */; };
 		AD19CB3125C042D8000DF7D7 /* AsteroidListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD19CB3025C042D8000DF7D7 /* AsteroidListView.swift */; };
+		AD62D64C25D5B7D200B40870 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD62D64B25D5B7D200B40870 /* InfoView.swift */; };
+		AD864C8525D47E68002689FB /* ComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD864C8425D47E68002689FB /* ComparisonView.swift */; };
 		ADB3A14525BF5BCE00528F3D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3A14425BF5BCE00528F3D /* MainView.swift */; };
 		ADB3A14A25BF693C00528F3D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3A14925BF693C00528F3D /* SearchView.swift */; };
 		ADB3A15225BF6BAF00528F3D /* AsteroidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB3A15125BF6BAF00528F3D /* AsteroidView.swift */; };
@@ -19,6 +21,7 @@
 		ADC9CC6825CF18AD0045558A /* AsteroidViewItemScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADC9CC6725CF18AD0045558A /* AsteroidViewItemScene.sks */; };
 		ADC9CC7D25CF1F140045558A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC9CC7C25CF1F140045558A /* Assets.xcassets */; };
 		ADC9CC8625CF289F0045558A /* AsteroidViewItemScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADC9CC8525CF289F0045558A /* AsteroidViewItemScene2.sks */; };
+		ADDA0B1625D56276001A36C4 /* Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDA0B1525D56276001A36C4 /* Comparison.swift */; };
 		ADDA558D25CEFCA000CD8FCA /* AsteroidViewItemScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDA558C25CEFCA000CD8FCA /* AsteroidViewItemScene.swift */; };
 		ADDA559225CEFCBD00CD8FCA /* AsteroidGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDA559125CEFCBD00CD8FCA /* AsteroidGenerator.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +53,8 @@
 		AD164B2425BB51370035B473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD164B2925BB51370035B473 /* Asteroid WatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Asteroid WatchUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD19CB3025C042D8000DF7D7 /* AsteroidListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidListView.swift; sourceTree = "<group>"; };
+		AD62D64B25D5B7D200B40870 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		AD864C8425D47E68002689FB /* ComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonView.swift; sourceTree = "<group>"; };
 		ADB3A14425BF5BCE00528F3D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		ADB3A14925BF693C00528F3D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		ADB3A15125BF6BAF00528F3D /* AsteroidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidView.swift; sourceTree = "<group>"; };
@@ -57,6 +62,7 @@
 		ADC9CC6725CF18AD0045558A /* AsteroidViewItemScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AsteroidViewItemScene.sks; sourceTree = "<group>"; };
 		ADC9CC7C25CF1F140045558A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADC9CC8525CF289F0045558A /* AsteroidViewItemScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AsteroidViewItemScene2.sks; sourceTree = "<group>"; };
+		ADDA0B1525D56276001A36C4 /* Comparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparison.swift; sourceTree = "<group>"; };
 		ADDA558C25CEFCA000CD8FCA /* AsteroidViewItemScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidViewItemScene.swift; sourceTree = "<group>"; };
 		ADDA559125CEFCBD00CD8FCA /* AsteroidGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +131,9 @@
 				ADB3A14425BF5BCE00528F3D /* MainView.swift */,
 				ADB3A14925BF693C00528F3D /* SearchView.swift */,
 				ADC9CC7C25CF1F140045558A /* Assets.xcassets */,
+				AD864C8425D47E68002689FB /* ComparisonView.swift */,
+				ADDA0B1525D56276001A36C4 /* Comparison.swift */,
+				AD62D64B25D5B7D200B40870 /* InfoView.swift */,
 			);
 			path = "Asteroid Watch";
 			sourceTree = "<group>";
@@ -281,10 +290,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADDA559225CEFCBD00CD8FCA /* AsteroidGenerator.swift in Sources */,
+				AD62D64C25D5B7D200B40870 /* InfoView.swift in Sources */,
 				AD164B0C25BB51360035B473 /* Asteroid_WatchApp.swift in Sources */,
 				ADB3A14A25BF693C00528F3D /* SearchView.swift in Sources */,
 				AD19CB3125C042D8000DF7D7 /* AsteroidListView.swift in Sources */,
+				AD864C8525D47E68002689FB /* ComparisonView.swift in Sources */,
 				ADDA558D25CEFCA000CD8FCA /* AsteroidViewItemScene.swift in Sources */,
+				ADDA0B1625D56276001A36C4 /* Comparison.swift in Sources */,
 				ADB3A14525BF5BCE00528F3D /* MainView.swift in Sources */,
 				ADC9CC6325CF0E1E0045558A /* AsteroidViewItem.swift in Sources */,
 				ADB3A15225BF6BAF00528F3D /* AsteroidView.swift in Sources */,
@@ -455,7 +467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail.markosapps.Asteroid-Watch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -477,7 +489,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail.markosapps.Asteroid-Watch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
