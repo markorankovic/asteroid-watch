@@ -11,8 +11,8 @@ class MockAPITests: XCTestCase {
         let exp = expectation(description: "")
                 
         let dateRange = ClosedRange<AsteroidWatchAPI.Date>.init(uncheckedBounds: (
-            lower: Date.create(day: 26, month: 1, year: 2021)!,
-            upper: Date.create(day: 30, month: 1, year: 2021)!
+            lower: Date.create(day: 23, month: 5, year: 2021)!,
+            upper: Date.create(day: 28, month: 5, year: 2021)!
         ))
         let futureAsteroids = mockAPI.getAsteroids(
             dateRange: dateRange
@@ -23,11 +23,11 @@ class MockAPITests: XCTestCase {
                 exp.fulfill()
             },
             receiveValue: { value in
-                XCTAssert(value.count == 1)
+                XCTAssert(value.count > 0)
             }
         ).store(in: &disposableBag)
         
-        wait(for: [exp], timeout: 3)
+        wait(for: [exp], timeout: 10)
     }
     
 }

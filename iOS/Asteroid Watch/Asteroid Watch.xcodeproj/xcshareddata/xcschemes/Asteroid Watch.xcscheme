@@ -32,16 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AD164B1D25BB51370035B473"
-               BuildableName = "Asteroid WatchTests.xctest"
-               BlueprintName = "Asteroid WatchTests"
-               ReferencedContainer = "container:Asteroid Watch.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "GeometryAPITests"
                BuildableName = "GeometryAPITests"
                BlueprintName = "GeometryAPITests"
