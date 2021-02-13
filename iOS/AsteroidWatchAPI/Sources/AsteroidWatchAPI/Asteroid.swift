@@ -1,4 +1,9 @@
 public struct Asteroid: Codable, Hashable {
+    
+    public static func == (lhs: Asteroid, rhs: Asteroid) -> Bool {
+        return lhs.id == rhs.id
+    }
+
     public var id: String
     public var name: String
     public var diameter: Double
@@ -6,6 +11,12 @@ public struct Asteroid: Codable, Hashable {
     public var velocity: Double
     public var date: Date?
     public var isHazardous: Bool
+    
+    public var visualNode = VisualNode()
+    
+    private enum CodingKeys: CodingKey {
+        case id, name, diameter, missDistance, velocity, date, isHazardous
+    }
             
     public init(
         id: String,

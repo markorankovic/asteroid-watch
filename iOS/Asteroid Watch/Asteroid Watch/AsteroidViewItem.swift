@@ -9,13 +9,11 @@ import SwiftUI
 import AsteroidWatchAPI
 
 struct AsteroidViewItem: View {
-    let asteroid: Asteroid
+    var asteroid: Asteroid
     
     var body: some View {
         SpriteView(
-            scene: AsteroidViewItemScene(
-                asteroid: asteroid
-            )
+            scene: AsteroidViewItemScene(asteroid: asteroid)
         )
         .aspectRatio(
             .init(width: 400, height: 300), contentMode: .fit

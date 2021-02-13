@@ -16,7 +16,9 @@ struct AsteroidListView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(asteroids.wrappedValue, id: \.self) {
-                        AsteroidViewItem(asteroid: $0).padding()
+                        AsteroidViewItem(
+                            asteroid: $0
+                        ).padding()
                     }
                 }
             }
@@ -37,5 +39,6 @@ struct AsteroidListView_Previews: PreviewProvider {
                 isHazardous: true
             )
         ]))
+        .previewDevice("iPhone 11")
     }
 }

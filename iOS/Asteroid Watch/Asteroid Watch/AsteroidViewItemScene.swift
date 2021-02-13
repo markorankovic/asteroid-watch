@@ -3,7 +3,7 @@ import AsteroidWatchAPI
 
 public class AsteroidViewItemScene: SKScene {
     
-    var asteroid: VisualAsteroid?
+    var asteroid: Asteroid?
         
     public override init() {
         super.init()
@@ -16,13 +16,7 @@ public class AsteroidViewItemScene: SKScene {
     
     public convenience init(asteroid: Asteroid) {
         self.init(fileNamed: "AsteroidViewItemScene2")!
-        let asteroidNode = (childNode(withName: "asteroid") as? SKSpriteNode)!
-        self.asteroid = VisualAsteroid(
-            asteroid: asteroid,
-            shapeNode: AsteroidGenerator.generateAsteroid(
-                size: asteroidNode.frame.size
-            ) ?? SKShapeNode()
-        )
+        self.asteroid = asteroid
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,23 +49,26 @@ public class AsteroidViewItemScene: SKScene {
         
         //addStars()
         
-        let asteroidNode = (childNode(withName: "asteroid") as? SKSpriteNode)!
+        let asteroidTemplate = (childNode(withName: "asteroid") as? SKSpriteNode)!
         
-        asteroidNode.removeFromParent()
-        asteroid.shapeNode.zPosition = -1
-        asteroid.shapeNode.position = .init(
-            x: asteroidNode.position.x - asteroid.shapeNode.frame.width/2,
-            y: asteroidNode.position.y - asteroid.shapeNode.frame.height/2
+        asteroidTemplate.removeFromParent()
+        
+        let asteroidNode: SKShapeNode = asteroid.visualNode.node2D ?? AsteroidGenerator.generateAsteroid(
+            size: asteroidTemplate.size
+        ) ?? SKShapeNode()
+        
+        asteroidNode.zPosition = -1
+        asteroidNode.position = .init(
+            x: asteroidTemplate.position.x - asteroidNode.frame.width/2,
+            y: asteroidTemplate.position.y - asteroidNode.frame.height/2
         )
-        addChild(asteroid.shapeNode)
+        addChild(asteroidNode)
         
-        (childNode(withName: "name") as? SKLabelNode)?.text = asteroid.asteroid.name
-        (childNode(withName: "velocity") as? SKLabelNode)?.text = "\(Int(asteroid.asteroid.velocity)) km/h"
-        (childNode(withName: "miss_distance") as? SKLabelNode)?.text = "\(Int(asteroid.asteroid.missDistance)) km"
-        (childNode(withName: "diameter") as? SKLabelNode)?.text = "\(Int(asteroid.asteroid.diameter)) m"
-        (childNode(withName: "alert") as? SKSpriteNode)?.alpha = asteroid.asteroid.isHazardous ? 1 : 0
+        (childNode(withName: "name") as? SKLabelNode)?.text = asteroid.name
+        (childNode(withName: "velocity") as? SKLabelNode)?.text = "\(Int(asteroid.velocity)) km/h"
+        (childNode(withName: "miss_distance") as? SKLabelNode)?.text = "\(Int(asteroid.missDistance)) km"
+        (childNode(withName: "diameter") as? SKLabelNode)?.text = "\(Int(asteroid.diameter)) m"
+        (childNode(withName: "alert") as? SKSpriteNode)?.alpha = asteroid.isHazardous ? 1 : 0
     }
     
 }
-
-

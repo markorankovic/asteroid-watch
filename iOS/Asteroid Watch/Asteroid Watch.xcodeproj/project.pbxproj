@@ -22,9 +22,9 @@
 		ADC9CC6825CF18AD0045558A /* AsteroidViewItemScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADC9CC6725CF18AD0045558A /* AsteroidViewItemScene.sks */; };
 		ADC9CC7D25CF1F140045558A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC9CC7C25CF1F140045558A /* Assets.xcassets */; };
 		ADC9CC8625CF289F0045558A /* AsteroidViewItemScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADC9CC8525CF289F0045558A /* AsteroidViewItemScene2.sks */; };
-		ADDA0B1625D56276001A36C4 /* Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDA0B1525D56276001A36C4 /* Comparison.swift */; };
 		ADDA558D25CEFCA000CD8FCA /* AsteroidViewItemScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDA558C25CEFCA000CD8FCA /* AsteroidViewItemScene.swift */; };
 		ADDA559225CEFCBD00CD8FCA /* AsteroidGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDA559125CEFCBD00CD8FCA /* AsteroidGenerator.swift */; };
+		ADF2DBFE25D7FD6000A26A08 /* Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBFD25D7FD6000A26A08 /* Comparison.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,9 +64,9 @@
 		ADC9CC6725CF18AD0045558A /* AsteroidViewItemScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AsteroidViewItemScene.sks; sourceTree = "<group>"; };
 		ADC9CC7C25CF1F140045558A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADC9CC8525CF289F0045558A /* AsteroidViewItemScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AsteroidViewItemScene2.sks; sourceTree = "<group>"; };
-		ADDA0B1525D56276001A36C4 /* Comparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparison.swift; sourceTree = "<group>"; };
 		ADDA558C25CEFCA000CD8FCA /* AsteroidViewItemScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidViewItemScene.swift; sourceTree = "<group>"; };
 		ADDA559125CEFCBD00CD8FCA /* AsteroidGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidGenerator.swift; sourceTree = "<group>"; };
+		ADF2DBFD25D7FD6000A26A08 /* Comparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparison.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,13 +130,13 @@
 				ADB3A15125BF6BAF00528F3D /* AsteroidView.swift */,
 				ADC9CC6225CF0E1E0045558A /* AsteroidViewItem.swift */,
 				ADDA558C25CEFCA000CD8FCA /* AsteroidViewItemScene.swift */,
+				ADF2DBFD25D7FD6000A26A08 /* Comparison.swift */,
+				ADBD48A525D5C56100279446 /* ComparisonSequenceView.swift */,
+				AD864C8425D47E68002689FB /* ComparisonView.swift */,
+				AD62D64B25D5B7D200B40870 /* InfoView.swift */,
 				ADB3A14425BF5BCE00528F3D /* MainView.swift */,
 				ADB3A14925BF693C00528F3D /* SearchView.swift */,
 				ADC9CC7C25CF1F140045558A /* Assets.xcassets */,
-				AD864C8425D47E68002689FB /* ComparisonView.swift */,
-				ADDA0B1525D56276001A36C4 /* Comparison.swift */,
-				AD62D64B25D5B7D200B40870 /* InfoView.swift */,
-				ADBD48A525D5C56100279446 /* ComparisonSequenceView.swift */,
 			);
 			path = "Asteroid Watch";
 			sourceTree = "<group>";
@@ -300,9 +300,9 @@
 				AD864C8525D47E68002689FB /* ComparisonView.swift in Sources */,
 				ADBD48A625D5C56100279446 /* ComparisonSequenceView.swift in Sources */,
 				ADDA558D25CEFCA000CD8FCA /* AsteroidViewItemScene.swift in Sources */,
-				ADDA0B1625D56276001A36C4 /* Comparison.swift in Sources */,
 				ADB3A14525BF5BCE00528F3D /* MainView.swift in Sources */,
 				ADC9CC6325CF0E1E0045558A /* AsteroidViewItem.swift in Sources */,
+				ADF2DBFE25D7FD6000A26A08 /* Comparison.swift in Sources */,
 				ADB3A15225BF6BAF00528F3D /* AsteroidView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

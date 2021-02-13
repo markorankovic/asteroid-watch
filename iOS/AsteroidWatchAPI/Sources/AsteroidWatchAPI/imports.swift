@@ -2,3 +2,4 @@
 @_exported import Foundation
 @_exported import SpriteKit
 @_exported import GeometryAPI
+@_exported import SceneKit
