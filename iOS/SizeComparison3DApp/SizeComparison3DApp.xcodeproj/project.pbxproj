@@ -34,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD27985225DAB1D000D05BA0 /* perlin_noise_improved.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = perlin_noise_improved.jpg; sourceTree = "<group>"; };
+		AD27985325DAB1D000D05BA0 /* asteroid_tex.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asteroid_tex.jpeg; sourceTree = "<group>"; };
 		ADF2DBCD25D7FC5D00A26A08 /* SizeComparison3DApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SizeComparison3DApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADF2DBD225D7FC5D00A26A08 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -74,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD27985425DAB1D800D05BA0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				AD27985325DAB1D000D05BA0 /* asteroid_tex.jpeg */,
+				AD27985225DAB1D000D05BA0 /* perlin_noise_improved.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		ADF2DBC425D7FC5D00A26A08 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +108,7 @@
 		ADF2DBCF25D7FC5D00A26A08 /* SizeComparison3DApp */ = {
 			isa = PBXGroup;
 			children = (
+				AD27985425DAB1D800D05BA0 /* Images */,
 				ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */,
 				ADF2DBD225D7FC5D00A26A08 /* art.scnassets */,
 				ADF2DBD625D7FC5D00A26A08 /* Main.storyboard */,
@@ -425,6 +437,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 83XX9TWPTZ;
 				INFOPLIST_FILE = SizeComparison3DApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -444,6 +457,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 83XX9TWPTZ;
 				INFOPLIST_FILE = SizeComparison3DApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
