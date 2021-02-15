@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		ADF2DBD125D7FC5D00A26A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */; };
 		ADF2DBD325D7FC5D00A26A08 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD225D7FC5D00A26A08 /* art.scnassets */; };
-		ADF2DBD525D7FC5D00A26A08 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBD425D7FC5D00A26A08 /* GameViewController.swift */; };
 		ADF2DBD825D7FC5D00A26A08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD625D7FC5D00A26A08 /* Main.storyboard */; };
 		ADF2DBDA25D7FC5E00A26A08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD925D7FC5E00A26A08 /* Assets.xcassets */; };
 		ADF2DBE525D7FC5E00A26A08 /* SizeComparison3DAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBE425D7FC5E00A26A08 /* SizeComparison3DAppTests.swift */; };
 		ADF2DBF025D7FC5E00A26A08 /* SizeComparison3DAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBEF25D7FC5E00A26A08 /* SizeComparison3DAppUITests.swift */; };
+		ADF2DC0025D7FE6F00A26A08 /* SizeComparisonScene3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBFF25D7FE6F00A26A08 /* SizeComparisonScene3D.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 		ADF2DBCD25D7FC5D00A26A08 /* SizeComparison3DApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SizeComparison3DApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADF2DBD225D7FC5D00A26A08 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		ADF2DBD425D7FC5D00A26A08 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		ADF2DBD725D7FC5D00A26A08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ADF2DBD925D7FC5E00A26A08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADF2DBDB25D7FC5E00A26A08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		ADF2DBEB25D7FC5E00A26A08 /* SizeComparison3DAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SizeComparison3DAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF2DBEF25D7FC5E00A26A08 /* SizeComparison3DAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeComparison3DAppUITests.swift; sourceTree = "<group>"; };
 		ADF2DBF125D7FC5E00A26A08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADF2DBFF25D7FE6F00A26A08 /* SizeComparisonScene3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeComparisonScene3D.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +99,10 @@
 			children = (
 				ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */,
 				ADF2DBD225D7FC5D00A26A08 /* art.scnassets */,
-				ADF2DBD425D7FC5D00A26A08 /* GameViewController.swift */,
 				ADF2DBD625D7FC5D00A26A08 /* Main.storyboard */,
 				ADF2DBD925D7FC5E00A26A08 /* Assets.xcassets */,
 				ADF2DBDB25D7FC5E00A26A08 /* Info.plist */,
+				ADF2DBFF25D7FE6F00A26A08 /* SizeComparisonScene3D.swift */,
 			);
 			path = SizeComparison3DApp;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADF2DBD525D7FC5D00A26A08 /* GameViewController.swift in Sources */,
+				ADF2DC0025D7FE6F00A26A08 /* SizeComparisonScene3D.swift in Sources */,
 				ADF2DBD125D7FC5D00A26A08 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,7 +434,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.markosapps.SizeComparison3DApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -453,7 +453,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.markosapps.SizeComparison3DApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

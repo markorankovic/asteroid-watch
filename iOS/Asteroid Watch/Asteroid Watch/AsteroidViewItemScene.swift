@@ -65,10 +65,16 @@ public class AsteroidViewItemScene: SKScene {
         addChild(asteroidNode)
         
         (childNode(withName: "name") as? SKLabelNode)?.text = asteroid.name
-        (childNode(withName: "velocity") as? SKLabelNode)?.text = "\(Int(asteroid.velocity)) km/h"
-        (childNode(withName: "miss_distance") as? SKLabelNode)?.text = "\(Int(asteroid.missDistance)) km"
-        (childNode(withName: "diameter") as? SKLabelNode)?.text = "\(Int(asteroid.diameter)) m"
+        (childNode(withName: "velocity") as? SKLabelNode)?.text = "\(numberFormatter.string(from: NSNumber(value: Int(asteroid.velocity)))!) km/h"
+        (childNode(withName: "miss_distance") as? SKLabelNode)?.text = "\(numberFormatter.string(from: NSNumber(value: Int(asteroid.missDistance)))!) km"
+        (childNode(withName: "diameter") as? SKLabelNode)?.text = "\(numberFormatter.string(from: NSNumber(value: Int(asteroid.diameter)))!) m"
         (childNode(withName: "alert") as? SKSpriteNode)?.alpha = asteroid.isHazardous ? 1 : 0
     }
+    
+    let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
     
 }

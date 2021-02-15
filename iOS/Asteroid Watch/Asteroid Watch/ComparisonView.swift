@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ComparisonAPI
 
 struct ComparisonView: View {
     @State var is3D: Bool
