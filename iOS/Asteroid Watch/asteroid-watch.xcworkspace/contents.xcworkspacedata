@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../UIPanErrorReproduction/UIPanErrorReproduction.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:../SizeComparison3DApp/SizeComparison3DApp.xcodeproj">
    </FileRef>
    <FileRef
