@@ -37,17 +37,30 @@ class SizeComparisonScene3D: UIViewController {
                         
         initAsteroids()
         
+        let asteroids = scene.rootNode.childNodes.filter({ $0.name == "asteroid" })
+        
+        guard let firstAsteroid = asteroids.first, let lastAsteroid = asteroids.last, firstAsteroid != lastAsteroid else {
+            return
+        }
+                
+        cameraNode.constraints = [
+            SCNTransformConstraint.positionConstraint(
+                inWorldSpace: false,
+                with: { (node, position) in
+                    if position.x <= firstAsteroid.position.x {
+                        node.position.x = firstAsteroid.position.x
+                    } else if position.x >= lastAsteroid.position.x {
+                        node.position.x = lastAsteroid.position.x
+                    }
+                    return position
+                }
+            )
+        ]
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
         scnView.addGestureRecognizer(tapGesture)
         scnView.addGestureRecognizer(panGesture)
-    }
-    
-    var pointsToScrollThrough: [SCNVector3] {
-        let asteroids = scene.rootNode.childNodes.filter({ $0.name == "asteroid" })
-        return asteroids.map {
-            .init($0.position.x, $0.position.y, $0.position.z + $0.boundingSphere.radius * 10)
-        }
     }
     
     func initAsteroids() {
@@ -62,7 +75,7 @@ class SizeComparisonScene3D: UIViewController {
             
             sphere.firstMaterial!.displacement.contents = UIImage(named: "noise")
             sphere.firstMaterial!.diffuse.contents = UIImage(named: "asteroid")
-            
+                        
             let asteroid = SCNNode(geometry: sphere)
             asteroid.name = "asteroid"
             asteroid.position.x += Float(3 * r) / 2 + Float(prevDiameter) + Float(prevX)
@@ -70,12 +83,16 @@ class SizeComparisonScene3D: UIViewController {
             scene.rootNode.addChildNode(asteroid)
             prevDiameter = CGFloat(diameter)
             prevX = CGFloat(asteroid.position.x)
+            asteroid.runAction(
+                SCNAction.repeatForever(
+                    .rotateBy(x: 0, y: 6.28, z: 0, duration: 7)
+                )
+            )
         }
     }
     
     @objc
-    func handleTap(_ gestureRecognize: UITapGestureRecognizer) {
-    }
+    func handleTap(_ gestureRecognize: UITapGestureRecognizer) { }
     
     @objc
     func handlePan(_ gestureRecognize: UIPanGestureRecognizer) {
@@ -84,8 +101,18 @@ class SizeComparisonScene3D: UIViewController {
         let dx = velocity.x
         print("dx: \(dx)")
         let asteroidsBetween: (SCNNode?, SCNNode?) = {
-            let lAsteroid = asteroids.filter{ $0.position.x < cameraNode.position.x }.first
-            let rAsteroid = asteroids.filter{ $0.position.x > cameraNode.position.x }.first
+            let lAsteroid = asteroids.filter{
+                $0.position.x < cameraNode.position.x
+            }.sorted(by:
+                { $0.position.x > $1.position.x }
+            ).first
+            
+            let rAsteroid = asteroids.filter{
+                $0.position.x > cameraNode.position.x
+            }.sorted(by:
+                { $0.position.x < $1.position.x}
+            ).first
+            
             return (lAsteroid, rAsteroid)
         }()
         
@@ -93,34 +120,39 @@ class SizeComparisonScene3D: UIViewController {
         
         var v: Float = 0
         
-        var dz: Float = 0
-        
         switch asteroidsBetween {
-        case (nil, .some(let r)):
+        case (nil, .some(_)):
             if dx >= 0 {
                 v = 0.1
-                cameraNode.position.z = r.position.z + r.boundingSphere.radius * 10
             } else { v = -0.1 }
-        case (.some(let l), nil):
-            if dx <= 0 {
-                v = 1
-                cameraNode.position.z = l.position.z + l.boundingSphere.radius * 10
-            } else { v = -1 }
+        case (.some(_), nil):
+            if dx >= 0 {
+                v = 0.1
+            } else { v = -0.1 }
         case (.some(let l), .some(let r)):
             let speed = Float((CGFloat(r.position.x - l.position.x) / baseDx) * dx)
             v = dx > 0 ? abs(speed) : -abs(speed)
             
-            let lPosZ = l.position.z + l.boundingSphere.radius * 10
-            let rPosZ = r.position.z + r.boundingSphere.radius * 10
-
-            let speedZ = Float((CGFloat(rPosZ - lPosZ) / baseDx) * dx)
-            dz = speedZ > 0 ? abs(speedZ) : -abs(speedZ)
-        case (.none, .none): v = 0
+            let lPosZ = l.position.z + l.boundingSphere.radius * 5
+            let rPosZ = r.position.z + r.boundingSphere.radius * 5
+                        
+            let lPosX = l.position.x
+            let currentX = cameraNode.position.x
+            let rPosX = r.position.x
+            
+            let lPosY = l.position.y
+            let rPosY = r.position.y
+            
+            cameraNode.position.z = lPosZ * (1 - (currentX - lPosX) / (rPosX - lPosX)) + rPosZ * (currentX - lPosX) / (rPosX - lPosX)
+            cameraNode.position.y = lPosY * (1 - (currentX - lPosX) / (rPosX - lPosX)) + rPosY * (currentX - lPosX) / (rPosX - lPosX)
+        case (.none, .none):
+            if dx >= 0 {
+                v = 0.1
+            } else { v = -0.1 }
         }
         
         print("v: \(v)")
         cameraNode.position.x += v
-        cameraNode.position.z -= dz
     }
 
     override var shouldAutorotate: Bool {
