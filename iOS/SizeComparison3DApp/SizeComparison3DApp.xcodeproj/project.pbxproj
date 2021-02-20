@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ADD77BCA25E17FF10073BBDA /* universe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BC925E17FF10073BBDA /* universe.jpg */; };
+		ADD77BCC25E19A1A0073BBDA /* universe in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BCB25E19A190073BBDA /* universe */; };
 		ADF2DBD125D7FC5D00A26A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */; };
 		ADF2DBD325D7FC5D00A26A08 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD225D7FC5D00A26A08 /* art.scnassets */; };
 		ADF2DBD825D7FC5D00A26A08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD625D7FC5D00A26A08 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		AD27985225DAB1D000D05BA0 /* perlin_noise_improved.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = perlin_noise_improved.jpg; sourceTree = "<group>"; };
 		AD27985325DAB1D000D05BA0 /* asteroid_tex.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asteroid_tex.jpeg; sourceTree = "<group>"; };
+		ADD77BC925E17FF10073BBDA /* universe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = universe.jpg; sourceTree = "<group>"; };
+		ADD77BCB25E19A190073BBDA /* universe */ = {isa = PBXFileReference; lastKnownFileType = folder; path = universe; sourceTree = "<group>"; };
 		ADF2DBCD25D7FC5D00A26A08 /* SizeComparison3DApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SizeComparison3DApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADF2DBD225D7FC5D00A26A08 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		AD27985425DAB1D800D05BA0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ADD77BCB25E19A190073BBDA /* universe */,
+				ADD77BC925E17FF10073BBDA /* universe.jpg */,
 				AD27985325DAB1D000D05BA0 /* asteroid_tex.jpeg */,
 				AD27985225DAB1D000D05BA0 /* perlin_noise_improved.jpg */,
 			);
@@ -240,8 +246,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD77BCA25E17FF10073BBDA /* universe.jpg in Resources */,
 				ADF2DBD325D7FC5D00A26A08 /* art.scnassets in Resources */,
 				ADF2DBDA25D7FC5E00A26A08 /* Assets.xcassets in Resources */,
+				ADD77BCC25E19A1A0073BBDA /* universe in Resources */,
 				ADF2DBD825D7FC5D00A26A08 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
