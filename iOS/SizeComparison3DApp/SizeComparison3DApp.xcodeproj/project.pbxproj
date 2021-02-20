@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		ADD77BCA25E17FF10073BBDA /* universe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BC925E17FF10073BBDA /* universe.jpg */; };
 		ADD77BCC25E19A1A0073BBDA /* universe in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BCB25E19A190073BBDA /* universe */; };
+		ADD77BD725E1A3A90073BBDA /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BD625E1A3A90073BBDA /* Launch Screen.storyboard */; };
+		ADD77BD925E1A9220073BBDA /* SizeComparison3D.scn in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BD825E1A9220073BBDA /* SizeComparison3D.scn */; };
+		ADD77BDB25E1A9410073BBDA /* space.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BDA25E1A9410073BBDA /* space.jpg */; };
 		ADF2DBD125D7FC5D00A26A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */; };
 		ADF2DBD325D7FC5D00A26A08 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD225D7FC5D00A26A08 /* art.scnassets */; };
 		ADF2DBD825D7FC5D00A26A08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD625D7FC5D00A26A08 /* Main.storyboard */; };
@@ -40,6 +43,9 @@
 		AD27985325DAB1D000D05BA0 /* asteroid_tex.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asteroid_tex.jpeg; sourceTree = "<group>"; };
 		ADD77BC925E17FF10073BBDA /* universe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = universe.jpg; sourceTree = "<group>"; };
 		ADD77BCB25E19A190073BBDA /* universe */ = {isa = PBXFileReference; lastKnownFileType = folder; path = universe; sourceTree = "<group>"; };
+		ADD77BD625E1A3A90073BBDA /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		ADD77BD825E1A9220073BBDA /* SizeComparison3D.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SizeComparison3D.scn; sourceTree = "<group>"; };
+		ADD77BDA25E1A9410073BBDA /* space.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = space.jpg; sourceTree = "<group>"; };
 		ADF2DBCD25D7FC5D00A26A08 /* SizeComparison3DApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SizeComparison3DApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADF2DBD225D7FC5D00A26A08 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -83,6 +89,7 @@
 		AD27985425DAB1D800D05BA0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ADD77BDA25E1A9410073BBDA /* space.jpg */,
 				ADD77BCB25E19A190073BBDA /* universe */,
 				ADD77BC925E17FF10073BBDA /* universe.jpg */,
 				AD27985325DAB1D000D05BA0 /* asteroid_tex.jpeg */,
@@ -121,6 +128,8 @@
 				ADF2DBD925D7FC5E00A26A08 /* Assets.xcassets */,
 				ADF2DBDB25D7FC5E00A26A08 /* Info.plist */,
 				ADF2DBFF25D7FE6F00A26A08 /* SizeComparisonScene3D.swift */,
+				ADD77BD625E1A3A90073BBDA /* Launch Screen.storyboard */,
+				ADD77BD825E1A9220073BBDA /* SizeComparison3D.scn */,
 			);
 			path = SizeComparison3DApp;
 			sourceTree = "<group>";
@@ -246,9 +255,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD77BD725E1A3A90073BBDA /* Launch Screen.storyboard in Resources */,
 				ADD77BCA25E17FF10073BBDA /* universe.jpg in Resources */,
 				ADF2DBD325D7FC5D00A26A08 /* art.scnassets in Resources */,
 				ADF2DBDA25D7FC5E00A26A08 /* Assets.xcassets in Resources */,
+				ADD77BDB25E1A9410073BBDA /* space.jpg in Resources */,
+				ADD77BD925E1A9220073BBDA /* SizeComparison3D.scn in Resources */,
 				ADD77BCC25E19A1A0073BBDA /* universe in Resources */,
 				ADF2DBD825D7FC5D00A26A08 /* Main.storyboard in Resources */,
 			);

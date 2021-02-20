@@ -5,7 +5,7 @@ import ARKit
 
 class SizeComparisonScene3D: UIViewController {
     
-    let scene = SCNScene()
+    let scene = SCNScene(named: "SizeComparison3D.scn")!
     
     var cameraNode = SCNNode()
         
@@ -16,13 +16,7 @@ class SizeComparisonScene3D: UIViewController {
         camera.zFar = 1000
         cameraNode.camera = camera
         scene.rootNode.addChildNode(cameraNode)
-        
-//        let lightNode = SCNNode()
-//        lightNode.light = SCNLight()
-//        lightNode.light!.type = .omni
-//        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-//        scene.rootNode.addChildNode(lightNode)
-                
+                        
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light!.type = .ambient
@@ -31,7 +25,7 @@ class SizeComparisonScene3D: UIViewController {
         
         let scnView = self.view as! SCNView
         scnView.scene = scene
-        scnView.showsStatistics = true
+        //scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.black
         
         initAsteroids()
@@ -41,23 +35,13 @@ class SizeComparisonScene3D: UIViewController {
         let length = CGFloat(asteroids.last!.position.x - asteroids.first!.position.x)
         
         initLine(length: length)
-        
-        scene.background.contents = [
-            UIImage(named: "row-1-col-1"),
-            UIImage(named: "row-1-col-2"),
-            UIImage(named: "row-1-col-3"),
-            
-            UIImage(named: "row-2-col-1"),
-            UIImage(named: "row-2-col-2"),
-            UIImage(named: "row-2-col-3"),
-        ]
-        
+                
         guard let firstAsteroid = asteroids.first, let lastAsteroid = asteroids.last, firstAsteroid != lastAsteroid else {
             return
         }
         
         cameraNode.position = firstAsteroid.position
-        cameraNode.position.z += firstAsteroid.boundingSphere.radius * 5
+        cameraNode.position.z += firstAsteroid.boundingSphere.radius * 4
         
         cameraNode.constraints = [
             SCNTransformConstraint.positionConstraint(
@@ -85,22 +69,30 @@ class SizeComparisonScene3D: UIViewController {
     }
     
     func initLine(length: CGFloat) {
+        let mat = SCNMaterial()
+        mat.diffuse.contents = UIColor.white
+        mat.transparency = 0.05
         let box = SCNBox(
             width: length * 2,
-            height: 0.5,
-            length: 0.5,
+            height: 2,
+            length: 1,
             chamferRadius: 0
         )
+        box.firstMaterial = mat
         let node = SCNNode(geometry: box)
         node.position.x = Float(length/2)
+        node.position.z = 0
+        node.position.y = 1
         scene.rootNode.addChildNode(node)
     }
     
     func initAsteroids() {
         var prevX: CGFloat = 0
         var prevDiameter: CGFloat = 0
-        let sizes = (1...10)
-        for r in sizes {
+        var sizes = (1...8).map{ _ in CGFloat.random(in: 1...50) }
+        sizes.append(1)
+        sizes.append(50)
+        for r in sizes.sorted() {
             let diameter: CGFloat = CGFloat(r * 2)
             
             let sphere = SCNSphere(radius: CGFloat(r))
@@ -149,17 +141,17 @@ class SizeComparisonScene3D: UIViewController {
             return (lAsteroid, rAsteroid)
         }()
         
-        let baseDx: CGFloat = -20000
+        let baseDx: CGFloat = 20000
                 
         switch asteroidsBetween {
         
         case (nil, .some(_)):
             let r = asteroids[0]
             var rPos = r.position
-            rPos.z = r.position.z + r.boundingSphere.radius * 5
+            rPos.z = r.position.z + r.boundingSphere.radius * 4
             var lPos = r.position
             lPos.x = r.position.x - 0.001
-            lPos.z = r.position.z + r.boundingSphere.radius * 5
+            lPos.z = r.position.z + r.boundingSphere.radius * 4
             
             lerp(
                 p1: lPos,
@@ -171,10 +163,10 @@ class SizeComparisonScene3D: UIViewController {
         case (.some(_), nil):
             let l = asteroids[asteroids.count - 1]
             var lPos = l.position
-            lPos.z = l.position.z + l.boundingSphere.radius * 5
+            lPos.z = l.position.z + l.boundingSphere.radius * 4
             var rPos = cameraNode.position
             rPos.x = cameraNode.position.x + 0.001
-            rPos.z = l.position.z + l.boundingSphere.radius * 5
+            rPos.z = l.position.z + l.boundingSphere.radius * 4
             
             lerp(
                 p1: lPos,
@@ -185,9 +177,9 @@ class SizeComparisonScene3D: UIViewController {
 
         case (.some(let l), .some(let r)):
             var lPos = l.position
-            lPos.z = l.position.z + l.boundingSphere.radius * 5
+            lPos.z = l.position.z + l.boundingSphere.radius * 4
             var rPos = r.position
-            rPos.z = r.position.z + r.boundingSphere.radius * 5
+            rPos.z = r.position.z + r.boundingSphere.radius * 4
             
             lerp(
                 p1: lPos,

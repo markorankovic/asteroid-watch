@@ -14,8 +14,8 @@
             filePath = "../SizeComparison3DApp/SizeComparison3DApp/SizeComparisonScene3D.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "handlePan(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "../SizeComparison3DApp/SizeComparison3DApp/SizeComparisonScene3D.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "handlePan(_:)"
             landmarkType = "7">
          </BreakpointContent>
