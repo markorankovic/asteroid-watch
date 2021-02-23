@@ -1,7 +1,6 @@
-import UIKit
-import QuartzCore
 import SceneKit
-import ARKit
+import AsteroidWatchAPI
+import GameplayKit
 
 class SizeComparisonScene3D: UIViewController {
     
@@ -9,14 +8,17 @@ class SizeComparisonScene3D: UIViewController {
     
     var cameraNode = SCNNode()
         
+    let api = MockAPI()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let camera = SCNCamera()
-        camera.zFar = 1000
+        camera.zFar = 10000
+        camera.zNear = 0.01
         cameraNode.camera = camera
         scene.rootNode.addChildNode(cameraNode)
-                        
+        
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light!.type = .ambient
@@ -25,23 +27,45 @@ class SizeComparisonScene3D: UIViewController {
         
         let scnView = self.view as! SCNView
         scnView.scene = scene
-        //scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.black
+                
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        scnView.addGestureRecognizer(tapGesture)
+        scnView.addGestureRecognizer(panGesture)
         
-        initAsteroids()
+        api.getAsteroids(
+            dateRange: .init(
+                uncheckedBounds: (
+                    lower: Date.create(day: 23, month: 5, year: 2021)!,
+                    upper: Date.create(day: 28, month: 5, year: 2021)!
+                )
+            )
+        ).sink(
+            receiveCompletion: { _ in },
+            receiveValue: { value in
+                self.didGetAsteroids(asteroids: value)
+            }
+        ).store(in: &bag)
+    }
+    
+    var bag: [AnyCancellable] = []
+    
+    func didGetAsteroids(asteroids: [Asteroid]) {
+        initAsteroids(asteroids: asteroids)
         
         let asteroids = scene.rootNode.childNodes.filter({ $0.name == "asteroid" })
         
-        let length = CGFloat(asteroids.last!.position.x - asteroids.first!.position.x)
-        
-        initLine(length: length)
-                
         guard let firstAsteroid = asteroids.first, let lastAsteroid = asteroids.last, firstAsteroid != lastAsteroid else {
             return
         }
         
+        let length = CGFloat(lastAsteroid.position.x - firstAsteroid.position.x)
+        
+        initLine(length: length)
+        
         cameraNode.position = firstAsteroid.position
-        cameraNode.position.z += firstAsteroid.boundingSphere.radius * 4
+        cameraNode.position.z += firstAsteroid.boundingSphere.radius * 6
         
         cameraNode.constraints = [
             SCNTransformConstraint.positionConstraint(
@@ -59,15 +83,8 @@ class SizeComparisonScene3D: UIViewController {
                 }
             )
         ]
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
-        scnView.addGestureRecognizer(tapGesture)
-        scnView.addGestureRecognizer(panGesture)
-                
-        print(asteroids.count)
     }
-    
+
     func initLine(length: CGFloat) {
         let mat = SCNMaterial()
         mat.diffuse.contents = UIColor.white
@@ -75,37 +92,85 @@ class SizeComparisonScene3D: UIViewController {
         let box = SCNBox(
             width: length * 2,
             height: 2,
-            length: 1,
+            length: 0.1,
             chamferRadius: 0
         )
         box.firstMaterial = mat
         let node = SCNNode(geometry: box)
         node.position.x = Float(length/2)
-        node.position.z = 0
         node.position.y = 1
         scene.rootNode.addChildNode(node)
     }
-    
-    func initAsteroids() {
+            
+    func initAsteroids(asteroids: [Asteroid]) {
         var prevX: CGFloat = 0
         var prevDiameter: CGFloat = 0
-        var sizes = (1...8).map{ _ in CGFloat.random(in: 1...50) }
-        sizes.append(1)
-        sizes.append(50)
-        for r in sizes.sorted() {
-            let diameter: CGFloat = CGFloat(r * 2)
+        guard let firstAsteroid = asteroids.sorted(by: { $0.diameter < $1.diameter }).first else { return }
+        for a in asteroids.sorted(by: { $0.diameter < $1.diameter }) {
+            print("diameter: \(a.diameter)")
+            let r = CGFloat(a.diameter / firstAsteroid.diameter)/2
             
-            let sphere = SCNSphere(radius: CGFloat(r))
+            let diameter = CGFloat(r * 2)
+            
+            let sphere = SCNSphere(radius: r)
             sphere.isGeodesic = true
             
-            sphere.firstMaterial!.displacement.contents = UIImage(named: "noise")
-            sphere.firstMaterial!.diffuse.contents = UIImage(named: "asteroid")
+            let source = GKPerlinNoiseSource()
+            source.seed = Int32.random(in: 1...100)
+            let noise = GKNoiseMap(
+                GKNoise(source), size: simd_double2(5, 5), origin: simd_double2(0, 0), sampleCount: vector_int2(100, 100), seamless: true
+            )
+ 
+            let tex = SKTexture(noiseMap: noise)
+            
+            sphere.firstMaterial!.displacement.contents = tex
+            sphere.firstMaterial!.displacement.intensity = r
+            sphere.firstMaterial!.diffuse.contents = UIImage(named: "asteroid_tex\(Int.random(in: 1...10))")
             
             let asteroid = SCNNode(geometry: sphere)
             asteroid.name = "asteroid"
-            asteroid.position.x += Float(3 * r) / 2 + Float(prevDiameter) + Float(prevX)
-            asteroid.position.y += Float(r)
+            asteroid.position.x += Float(5 * r) / 2 + Float(prevDiameter) + Float(prevX)
+            asteroid.position.y += Float(r + (r * 3)/4)
+            
+            let str = "\(a.name)"
+            let fontsize = diameter / 10
+            let font = UIFont(name: "COPPERPLATE", size: fontsize)
+            let nameDetail = SCNNode(
+                geometry: {
+                    let text = SCNText(string: str, extrusionDepth: 0)
+                    text.font = font
+                    return text
+                }()
+            )
+            nameDetail.pivot = SCNMatrix4MakeTranslation(
+                (nameDetail.boundingBox.max.x - nameDetail.boundingBox.min.x) / 2,
+                (nameDetail.boundingBox.min.y),
+                (nameDetail.boundingBox.max.z - nameDetail.boundingBox.min.z) / 2
+            )
+            let diameterDetail = SCNNode(
+                geometry: {
+                    let text = SCNText(string: "\(Int(a.diameter))M", extrusionDepth: 0)
+                    text.font = font
+                    return text
+                }()
+            )
+            diameterDetail.pivot = SCNMatrix4MakeTranslation(
+                (diameterDetail.boundingBox.max.x - diameterDetail.boundingBox.min.x) / 2,
+                (diameterDetail.boundingBox.min.y),
+                (diameterDetail.boundingBox.max.z - diameterDetail.boundingBox.min.z) / 2
+            )
+            
             scene.rootNode.addChildNode(asteroid)
+            
+            diameterDetail.position = asteroid.position
+            diameterDetail.position.y = Float(-r * 0.8 - CGFloat(nameDetail.geometry!.boundingBox.max.y - nameDetail.geometry!.boundingBox.min.y))
+
+            nameDetail.position = asteroid.position
+            nameDetail.position.y = Float(-r * 0.8)
+            
+            scene.rootNode.addChildNode(nameDetail)
+            scene.rootNode.addChildNode(diameterDetail)
+            
             prevDiameter = CGFloat(diameter)
             prevX = CGFloat(asteroid.position.x)
             asteroid.runAction(
@@ -142,16 +207,16 @@ class SizeComparisonScene3D: UIViewController {
         }()
         
         let baseDx: CGFloat = 20000
-                
+        
         switch asteroidsBetween {
         
         case (nil, .some(_)):
             let r = asteroids[0]
             var rPos = r.position
-            rPos.z = r.position.z + r.boundingSphere.radius * 4
+            rPos.z = r.position.z + r.boundingSphere.radius * 6
             var lPos = r.position
             lPos.x = r.position.x - 0.001
-            lPos.z = r.position.z + r.boundingSphere.radius * 4
+            lPos.z = r.position.z + r.boundingSphere.radius * 6
             
             lerp(
                 p1: lPos,
@@ -163,10 +228,10 @@ class SizeComparisonScene3D: UIViewController {
         case (.some(_), nil):
             let l = asteroids[asteroids.count - 1]
             var lPos = l.position
-            lPos.z = l.position.z + l.boundingSphere.radius * 4
+            lPos.z = l.position.z + l.boundingSphere.radius * 6
             var rPos = cameraNode.position
-            rPos.x = cameraNode.position.x + 0.001
-            rPos.z = l.position.z + l.boundingSphere.radius * 4
+            rPos.x = cameraNode.position.x + 1
+            rPos.z = l.position.z + l.boundingSphere.radius * 6
             
             lerp(
                 p1: lPos,
@@ -177,9 +242,9 @@ class SizeComparisonScene3D: UIViewController {
 
         case (.some(let l), .some(let r)):
             var lPos = l.position
-            lPos.z = l.position.z + l.boundingSphere.radius * 4
+            lPos.z = l.position.z + l.boundingSphere.radius * 6
             var rPos = r.position
-            rPos.z = r.position.z + r.boundingSphere.radius * 4
+            rPos.z = r.position.z + r.boundingSphere.radius * 6
             
             lerp(
                 p1: lPos,

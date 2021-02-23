@@ -15,14 +15,14 @@ struct ComparisonView: View {
     var body: some View {
         VStack {
             Text("Comparison")
-            Picker(
-                selection: $comparisonType,
-                label: Text("Please select a comparison")
-            ) {
-                ForEach(Comparison.allCases) {
-                    Text("\($0.rawValue)")
-                }
-            }
+//            Picker(
+//                selection: $comparisonType,
+//                label: Text("Please select a comparison")
+//            ) {
+//                ForEach(Comparison.allCases) {
+//                    Text("\($0.rawValue)")
+//                }
+//            }
             Toggle(
                 "3D",
                 isOn: $is3D

@@ -3,15 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD7ABA5525E2DDA500F0A025 /* AsteroidWatchAPI in Frameworks */ = {isa = PBXBuildFile; productRef = AD7ABA5425E2DDA500F0A025 /* AsteroidWatchAPI */; };
 		ADD77BCA25E17FF10073BBDA /* universe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BC925E17FF10073BBDA /* universe.jpg */; };
 		ADD77BCC25E19A1A0073BBDA /* universe in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BCB25E19A190073BBDA /* universe */; };
 		ADD77BD725E1A3A90073BBDA /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BD625E1A3A90073BBDA /* Launch Screen.storyboard */; };
 		ADD77BD925E1A9220073BBDA /* SizeComparison3D.scn in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BD825E1A9220073BBDA /* SizeComparison3D.scn */; };
 		ADD77BDB25E1A9410073BBDA /* space.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD77BDA25E1A9410073BBDA /* space.jpg */; };
+		ADD7B3DB25E55F61007EE5E1 /* asteroid_textures in Resources */ = {isa = PBXBuildFile; fileRef = ADD7B3DA25E55F61007EE5E1 /* asteroid_textures */; };
 		ADF2DBD125D7FC5D00A26A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */; };
 		ADF2DBD325D7FC5D00A26A08 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD225D7FC5D00A26A08 /* art.scnassets */; };
 		ADF2DBD825D7FC5D00A26A08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADF2DBD625D7FC5D00A26A08 /* Main.storyboard */; };
@@ -40,12 +42,12 @@
 
 /* Begin PBXFileReference section */
 		AD27985225DAB1D000D05BA0 /* perlin_noise_improved.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = perlin_noise_improved.jpg; sourceTree = "<group>"; };
-		AD27985325DAB1D000D05BA0 /* asteroid_tex.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asteroid_tex.jpeg; sourceTree = "<group>"; };
 		ADD77BC925E17FF10073BBDA /* universe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = universe.jpg; sourceTree = "<group>"; };
 		ADD77BCB25E19A190073BBDA /* universe */ = {isa = PBXFileReference; lastKnownFileType = folder; path = universe; sourceTree = "<group>"; };
 		ADD77BD625E1A3A90073BBDA /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		ADD77BD825E1A9220073BBDA /* SizeComparison3D.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SizeComparison3D.scn; sourceTree = "<group>"; };
 		ADD77BDA25E1A9410073BBDA /* space.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = space.jpg; sourceTree = "<group>"; };
+		ADD7B3DA25E55F61007EE5E1 /* asteroid_textures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = asteroid_textures; sourceTree = "<group>"; };
 		ADF2DBCD25D7FC5D00A26A08 /* SizeComparison3DApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SizeComparison3DApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF2DBD025D7FC5D00A26A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADF2DBD225D7FC5D00A26A08 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD7ABA5525E2DDA500F0A025 /* AsteroidWatchAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,13 +92,20 @@
 		AD27985425DAB1D800D05BA0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ADD7B3DA25E55F61007EE5E1 /* asteroid_textures */,
 				ADD77BDA25E1A9410073BBDA /* space.jpg */,
 				ADD77BCB25E19A190073BBDA /* universe */,
 				ADD77BC925E17FF10073BBDA /* universe.jpg */,
-				AD27985325DAB1D000D05BA0 /* asteroid_tex.jpeg */,
 				AD27985225DAB1D000D05BA0 /* perlin_noise_improved.jpg */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		AD7ABA5325E2DDA500F0A025 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		ADF2DBC425D7FC5D00A26A08 = {
@@ -105,6 +115,7 @@
 				ADF2DBE325D7FC5E00A26A08 /* SizeComparison3DAppTests */,
 				ADF2DBEE25D7FC5E00A26A08 /* SizeComparison3DAppUITests */,
 				ADF2DBCE25D7FC5D00A26A08 /* Products */,
+				AD7ABA5325E2DDA500F0A025 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,6 +179,9 @@
 			dependencies = (
 			);
 			name = SizeComparison3DApp;
+			packageProductDependencies = (
+				AD7ABA5425E2DDA500F0A025 /* AsteroidWatchAPI */,
+			);
 			productName = SizeComparison3DApp;
 			productReference = ADF2DBCD25D7FC5D00A26A08 /* SizeComparison3DApp.app */;
 			productType = "com.apple.product-type.application";
@@ -260,6 +274,7 @@
 				ADF2DBD325D7FC5D00A26A08 /* art.scnassets in Resources */,
 				ADF2DBDA25D7FC5E00A26A08 /* Assets.xcassets in Resources */,
 				ADD77BDB25E1A9410073BBDA /* space.jpg in Resources */,
+				ADD7B3DB25E55F61007EE5E1 /* asteroid_textures in Resources */,
 				ADD77BD925E1A9220073BBDA /* SizeComparison3D.scn in Resources */,
 				ADD77BCC25E19A1A0073BBDA /* universe in Resources */,
 				ADF2DBD825D7FC5D00A26A08 /* Main.storyboard in Resources */,
@@ -619,6 +634,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD7ABA5425E2DDA500F0A025 /* AsteroidWatchAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AsteroidWatchAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ADF2DBC525D7FC5D00A26A08 /* Project object */;
 }
