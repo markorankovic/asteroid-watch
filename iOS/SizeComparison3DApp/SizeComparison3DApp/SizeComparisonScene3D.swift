@@ -130,7 +130,7 @@ class SizeComparisonScene3D: UIViewController {
             let asteroid = SCNNode(geometry: sphere)
             asteroid.name = "asteroid"
             asteroid.position.x += Float(5 * r) / 2 + Float(prevDiameter) + Float(prevX)
-            asteroid.position.y += Float(r + (r * 3)/4)
+            asteroid.position.y += Float(r + (r * 4)/5)
             
             let str = "\(a.name)"
             let fontsize = diameter / 10
