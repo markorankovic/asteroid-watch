@@ -6,29 +6,21 @@
 //
 
 import SwiftUI
+import AsteroidWatchAPI
 
 struct ComparisonView: View {
-    @State var is3D: Bool
-        
+    let asteroids: [Asteroid]
+    
+    @Binding var showsComparison: Bool
+    
     @State var comparisonType: Comparison
     
     var body: some View {
         VStack {
             Text("Comparison")
-//            Picker(
-//                selection: $comparisonType,
-//                label: Text("Please select a comparison")
-//            ) {
-//                ForEach(Comparison.allCases) {
-//                    Text("\($0.rawValue)")
-//                }
-//            }
-            Toggle(
-                "3D",
-                isOn: $is3D
-            )
             Button("Begin") {
                 print("Begin comparison")
+                showsComparison = true
             }
         }
     }
@@ -36,6 +28,9 @@ struct ComparisonView: View {
 
 struct ComparisonView_Previews: PreviewProvider {
     static var previews: some View {
-        ComparisonView(is3D: true, comparisonType: .size)
+        ComparisonView(
+            asteroids: [], showsComparison: Binding.constant(false),
+            comparisonType: Comparison.size
+        )
     }
 }

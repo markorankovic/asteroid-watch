@@ -4,35 +4,45 @@ import AsteroidWatchAPI
 struct InfoView: View {
     var asteroids: Binding<[Asteroid]>
     
+    @State var showsComparison: Bool = false
+    
     @State private var selectedTab = 1
     
     var body: some View {
-        NavigationView {
-            TabView {
-                AsteroidListView(asteroids: asteroids)
-                    .onTapGesture {
-                        self.selectedTab = 1
+        if !showsComparison {
+            NavigationView {
+                TabView {
+                    AsteroidListView(asteroids: asteroids)
+                        .onTapGesture {
+                            self.selectedTab = 1
+                        }
+                        .tabItem {
+                            Text("Asteroids")
+                            Image(systemName: "list.bullet")
+                        }
+                        .tag(0)
+                    ComparisonView(asteroids: asteroids.wrappedValue, showsComparison: $showsComparison, comparisonType: .size)
+                        .tabItem {
+                            Text("Comparison")
+                            Image(systemName: "aspectratio")
+                        }
+                        .tag(1)
+                }.navigationBarItems(leading:
+                    Button(action: {
+                        self.asteroids.wrappedValue = []
+                    }) {
+                        HStack {
+                            Image(systemName: "arrow.left")
+                            Text("Back")
+                        }
                     }
-                    .tabItem {
-                        Text("Asteroids")
-                        Image(systemName: "list.bullet")
-                    }
-                    .tag(0)
-                ComparisonView(is3D: false, comparisonType: .size)
-                    .tabItem {
-                        Text("Comparison")
-                        Image(systemName: "aspectratio")
-                    }
-                    .tag(1)
-            }.navigationBarItems(leading:
-                Button(action: {
-                    self.asteroids.wrappedValue = []
-                }) {
-                    HStack {
-                        Image(systemName: "arrow.left")
-                        Text("Back")
-                    }
-                }
+                )
+            }
+        } else {
+            SwiftUIView(
+                comparisonScene: SizeComparisonScene3D(
+                    asteroids: asteroids.wrappedValue
+                )
             )
         }
     }
@@ -52,6 +62,6 @@ struct InfoView_Previews: PreviewProvider {
                     isHazardous: true
                 )
             ]
-        ))
+        ), showsComparison: false)
     }
 }
