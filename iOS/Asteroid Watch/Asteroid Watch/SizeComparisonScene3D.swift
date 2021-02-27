@@ -11,6 +11,8 @@ class SizeComparisonScene3D: SCNScene {
         
     init(asteroids: [Asteroid]) {
         super.init()
+        let scene = SCNScene(named: "SizeComparison3D.scn")!
+        self.background.contents = scene.background.contents
         self.asteroids = asteroids
         initialize()
     }
@@ -77,7 +79,7 @@ class SizeComparisonScene3D: SCNScene {
         mat.diffuse.contents = UIColor.white
         mat.transparency = 0.05
         let box = SCNBox(
-            width: length * 2,
+            width: length * 2.5,
             height: 2,
             length: 0.1,
             chamferRadius: 0
@@ -170,9 +172,9 @@ class SizeComparisonScene3D: SCNScene {
     
     func handleTap(_ gestureRecognize: UITapGestureRecognizer) { }
     
-    func handlePan(_ translation: CGSize) {
+    func handlePan(_ speed: CGFloat) {
         let asteroids = rootNode.childNodes.filter({ $0.name == "asteroid" })
-        let dx = translation.width * 5
+        let dx = speed
         print("dx: \(dx)")
         let asteroidsBetween: (SCNNode?, SCNNode?) = {
             let lAsteroid = asteroids.filter{

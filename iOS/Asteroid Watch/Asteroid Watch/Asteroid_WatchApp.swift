@@ -13,6 +13,7 @@ struct Asteroid_WatchApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .ignoresSafeArea()
         }
     }
 }
