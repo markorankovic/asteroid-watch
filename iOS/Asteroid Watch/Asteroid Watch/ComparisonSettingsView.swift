@@ -8,7 +8,7 @@
 import SwiftUI
 import AsteroidWatchAPI
 
-struct ComparisonView: View {
+struct ComparisonSettingsView: View {
     let asteroids: [Asteroid]
     
     @Binding var showsComparison: Bool
@@ -28,7 +28,7 @@ struct ComparisonView: View {
 
 struct ComparisonView_Previews: PreviewProvider {
     static var previews: some View {
-        ComparisonView(
+        ComparisonSettingsView(
             asteroids: [], showsComparison: Binding.constant(false),
             comparisonType: Comparison.size
         )

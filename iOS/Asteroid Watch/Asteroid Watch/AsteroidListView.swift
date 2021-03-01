@@ -17,7 +17,7 @@ struct AsteroidListView: View {
                 ForEach(asteroids.wrappedValue, id: \.self) {
                     AsteroidViewItem(
                         asteroid: $0
-                    ).padding()
+                    ).padding(.bottom, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                 }
             }
         }

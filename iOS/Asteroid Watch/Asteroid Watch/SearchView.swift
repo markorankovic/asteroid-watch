@@ -87,6 +87,9 @@ struct SearchView: View {
                 }
                 .padding(.bottom, 100)
             }
+//            .onDisappear {
+//                UIDevice.current.setValue(0, forKey: "orientation")
+//            }
         } else {
             InfoView(asteroids: $asteroids, showsComparison: false)
         }

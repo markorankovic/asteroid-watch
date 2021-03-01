@@ -6,7 +6,7 @@ struct InfoView: View {
     
     @State var showsComparison: Bool = false
     
-    @State private var selectedTab = 1
+    //@State private var selectedTab = 1
     
     @State var orientation = UIDevice.current.orientation {
         willSet {
@@ -39,7 +39,7 @@ struct InfoView: View {
                         )
                 }
             } else {
-                SwiftUIView(
+                ComparisonSequenceView(
                     comparisonScene: SizeComparisonScene3D(
                         asteroids: asteroids.wrappedValue
                     )
