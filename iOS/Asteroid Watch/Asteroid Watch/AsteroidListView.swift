@@ -12,17 +12,16 @@ struct AsteroidListView: View {
     var asteroids: Binding<[Asteroid]>
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    ForEach(asteroids.wrappedValue, id: \.self) {
-                        AsteroidViewItem(
-                            asteroid: $0
-                        ).padding()
-                    }
+        ScrollView {
+            VStack(alignment: .leading) {
+                ForEach(asteroids.wrappedValue, id: \.self) {
+                    AsteroidViewItem(
+                        asteroid: $0
+                    ).padding()
                 }
             }
         }
+        .padding(.bottom, 5)
     }
 }
 

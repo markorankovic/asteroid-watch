@@ -11,7 +11,6 @@ import AsteroidWatchAPI
 
 struct SwiftUIView: View {
     let comparisonScene: SizeComparisonScene3D
-    //var lastDragPosition: DragGesture.Value?
 
     var body: some View {
         SceneView(
@@ -23,17 +22,9 @@ struct SwiftUIView: View {
             delegate: nil,
             technique: nil
         ).gesture(DragGesture().onChanged { gesture in
-//            guard let lastDragPosition = lastDragPosition else {
-//                self.lastDragPosition = gesture
-//                return
-//            }
-//            let timeDiff = gesture.time.timeIntervalSince(lastDragPosition.time)
-            
             let speed: CGFloat = CGFloat(gesture.predictedEndLocation.x - gesture.location.x) * 5
 
             comparisonScene.handlePan(speed)
-            
-//            self.lastDragPosition = gesture
         })
     }
 }

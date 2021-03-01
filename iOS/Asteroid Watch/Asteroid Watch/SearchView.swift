@@ -22,24 +22,35 @@ struct SearchView: View {
         if asteroids.isEmpty {
             VStack {
                 Text("Welcome")
-                DatePicker(
-                    "Start Date",
-                    selection: $startDate,
-                    displayedComponents: .date
-                ).onChange(of: startDate, perform: { _ in
-                    if startDate > endDate {
-                        endDate = startDate
-                    }
-                })
-                DatePicker(
-                    "End Date",
-                    selection: $endDate,
-                    displayedComponents: .date
-                ).onChange(of: endDate, perform: { _ in
-                    if startDate > endDate {
-                        startDate = endDate
-                    }
-                })
+                    .padding(.bottom, 70)
+                    .padding(.top, 50)
+                    .font(.headline)
+                Image("asteroid")
+                    .resizable()
+                    .padding(.horizontal, 20)
+                Group {
+                    DatePicker(
+                        "Start Date",
+                        selection: $startDate,
+                        displayedComponents: .date
+                    ).onChange(of: startDate, perform: { _ in
+                        if startDate > endDate {
+                            endDate = startDate
+                        }
+                    })
+                    .padding(.top, 30)
+                    DatePicker(
+                        "End Date",
+                        selection: $endDate,
+                        displayedComponents: .date
+                    ).onChange(of: endDate, perform: { _ in
+                        if startDate > endDate {
+                            startDate = endDate
+                        }
+                    })
+                    .padding(.bottom, 30)
+                }
+                .padding(.horizontal, 80)
                 Button("Search") {
                     api.getAsteroids(
                         dateRange: .init(
@@ -74,9 +85,10 @@ struct SearchView: View {
                         }
                     )
                 }
+                .padding(.bottom, 100)
             }
         } else {
-            InfoView(asteroids: $asteroids)
+            InfoView(asteroids: $asteroids, showsComparison: false)
         }
     }
 }
@@ -85,6 +97,13 @@ var bag: [AnyCancellable] = []
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        //Group {
+        Group {
+            SearchView()
+                .previewDevice("iPhone 11")
+            SearchView()
+                .previewDevice("iPhone 8")
+        }
+        //}
     }
 }

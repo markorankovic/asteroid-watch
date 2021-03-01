@@ -8,44 +8,49 @@ struct InfoView: View {
     
     @State private var selectedTab = 1
     
-    var body: some View {
-        if !showsComparison {
-            NavigationView {
-                TabView {
-                    AsteroidListView(asteroids: asteroids)
-                        .onTapGesture {
-                            self.selectedTab = 1
-                        }
-                        .tabItem {
-                            Text("Asteroids")
-                            Image(systemName: "list.bullet")
-                        }
-                        .tag(0)
-                    ComparisonView(asteroids: asteroids.wrappedValue, showsComparison: $showsComparison, comparisonType: .size)
-                        .tabItem {
-                            Text("Comparison")
-                            Image(systemName: "aspectratio")
-                        }
-                        .tag(1)
-                }.navigationBarItems(leading:
-                    Button(action: {
-                        self.asteroids.wrappedValue = []
-                    }) {
-                        HStack {
-                            Image(systemName: "arrow.left")
-                            Text("Back")
-                        }
-                    }
-                )
+    @State var orientation = UIDevice.current.orientation {
+        willSet {
+            if newValue == .portrait {
+                showsComparison = false
             }
-        } else {
-            SwiftUIView(
-                comparisonScene: SizeComparisonScene3D(
-                    asteroids: asteroids.wrappedValue
-                )
-            )
         }
     }
+    
+    let orientationChanged = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+        .makeConnectable()
+        .autoconnect()
+
+    var body: some View {
+        Group {
+            if !orientation.isLandscape {
+                NavigationView {
+                    AsteroidListView(asteroids: asteroids)
+                        .navigationBarItems(
+                            leading: Button(
+                                action: {
+                                    self.asteroids.wrappedValue = []
+                                }
+                            ) {
+                                HStack {
+                                    Image(systemName: "arrow.left")
+                                    Text("Back")
+                                }
+                            }
+                        )
+                }
+            } else {
+                SwiftUIView(
+                    comparisonScene: SizeComparisonScene3D(
+                        asteroids: asteroids.wrappedValue
+                    )
+                )
+            }
+        }
+        .onReceive(orientationChanged) { _ in
+            self.orientation = UIDevice.current.orientation
+        }
+    }
+    
 }
 
 struct InfoView_Previews: PreviewProvider {
