@@ -90,25 +90,31 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
         return request(url: url)
     }
     
+    let session = URLSession(configuration: .default)
+    
     func request(url: URL) -> Future<[Asteroid], APIError> {
         return Future<[Asteroid], APIError> { promise in
-            var req = URLRequest(url: url)
-            req.allHTTPHeaderFields = ["Content-Type": "application/json"]
+            let req = URLRequest(url: url)
+            let t = CFAbsoluteTimeGetCurrent()
             print("Prepared for URL session")
-            URLSession.shared.dataTaskPublisher(
-                for: req
+            URLSession.DataTaskPublisher(
+                request: req,
+                session: session
             )
             .sink(
-                receiveCompletion: { res in
-                    return promise(.failure(.someError("URL error")))
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .finished: break
+                    case .failure(let error): return promise(.failure(.someError(error.localizedDescription)))
+                    }
                 },
                 receiveValue: { value in
                     do {
                         let object = try JSONDecoder().decode(NASAObject.self, from: value.data)
-                        print("NASA object received")
+                        print("NASA object received \(CFAbsoluteTimeGetCurrent() - t)")
                         return promise(.success(NASAAPI.nasaObjectToAsteroids(object)))
                     } catch {
-                        return promise(.failure(.someError("3rd Party API Error")))
+                        return promise(.failure(.someError(value.response.description)))
                     }
                 }
             ).store(in: &s)

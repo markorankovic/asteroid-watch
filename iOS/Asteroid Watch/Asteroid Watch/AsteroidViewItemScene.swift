@@ -45,6 +45,8 @@ public class AsteroidViewItemScene: SKScene {
     }
     
     public override func didMove(to view: SKView) {
+        self.backgroundColor = .clear
+        
         guard let asteroid = asteroid else { return }
         
         //addStars()

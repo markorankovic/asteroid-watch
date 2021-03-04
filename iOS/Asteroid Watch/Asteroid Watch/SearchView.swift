@@ -11,12 +11,20 @@ import AsteroidWatchAPI
 struct SearchView: View {
     @State var startDate: Foundation.Date = Date()
     @State var endDate: Foundation.Date = Date()
-        
-    let api = NASAAPI() // To be used statically
+    
+    let api = NASAAPI()
     
     @State var asteroids: [Asteroid] = []
     
     @State var errorOccurred: Bool = false
+    
+    func getRange(startDate: Date, endDate: Date) -> ClosedRange<Date> {
+        let startDate2 = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
+        let endDate2 = Calendar.current.dateComponents([.year, .month, .day], from: endDate)
+        print(startDate2)
+        print(endDate2)
+        return Calendar.current.date(from: startDate2)!...Calendar.current.date(from: endDate2)!
+    }
     
     var body: some View {
         if asteroids.isEmpty {
@@ -33,19 +41,20 @@ struct SearchView: View {
                         "Start Date",
                         selection: $startDate,
                         displayedComponents: .date
-                    ).onChange(of: startDate, perform: { _ in
-                        if startDate > endDate {
-                            endDate = startDate
+                    ).onChange(of: startDate, perform: { value in
+                        if value > endDate {
+                            endDate = value
                         }
                     })
                     .padding(.top, 30)
                     DatePicker(
                         "End Date",
                         selection: $endDate,
+                        in: getRange(startDate: startDate, endDate: startDate.advanced(by: 3600 * 24 * 7)),
                         displayedComponents: .date
-                    ).onChange(of: endDate, perform: { _ in
-                        if startDate > endDate {
-                            startDate = endDate
+                    ).onChange(of: endDate, perform: { value in
+                        if value < startDate {
+                            startDate = value
                         }
                     })
                     .padding(.bottom, 30)
@@ -53,12 +62,7 @@ struct SearchView: View {
                 .padding(.horizontal, 80)
                 Button("Search") {
                     api.getAsteroids(
-                        dateRange: .init(
-                            uncheckedBounds: (
-                                startDate,
-                                endDate
-                            )
-                        )
+                        dateRange: startDate...endDate
                     ).sink(
                         receiveCompletion: { completion in
                             switch completion {
@@ -87,9 +91,6 @@ struct SearchView: View {
                 }
                 .padding(.bottom, 100)
             }
-//            .onDisappear {
-//                UIDevice.current.setValue(0, forKey: "orientation")
-//            }
         } else {
             InfoView(asteroids: $asteroids, showsComparison: false)
         }
@@ -100,13 +101,11 @@ var bag: [AnyCancellable] = []
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        //Group {
         Group {
             SearchView()
                 .previewDevice("iPhone 11")
             SearchView()
                 .previewDevice("iPhone 8")
         }
-        //}
     }
 }
