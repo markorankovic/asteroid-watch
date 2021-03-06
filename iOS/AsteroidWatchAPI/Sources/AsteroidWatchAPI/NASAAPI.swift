@@ -56,7 +56,7 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
     }()
     
     public func getAsteroids(dateRange: ClosedRange<Date>) -> Future<[Asteroid], APIError> {
-        
+        print("Date range: \(dateRange)")
         let query: [URLQueryItem] = [
             URLQueryItem(
                 name: "start_date",
@@ -78,7 +78,7 @@ public struct NASAAPI: AsteroidWatchAPIProtocol {
             }
         }
         c.queryItems = query
-                
+        
         guard let url = c.url else {
             return Future { promise in
                 return promise(.failure(.someError("Getting url from components error")))

@@ -11,6 +11,8 @@
 		AD0552EC25CEFEF700CB6147 /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = AD0552EB25CEFEF700CB6147 /* Preview Content */; };
 		AD164B0C25BB51360035B473 /* Asteroid_WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD164B0B25BB51360035B473 /* Asteroid_WatchApp.swift */; };
 		AD19CB3125C042D8000DF7D7 /* AsteroidListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD19CB3025C042D8000DF7D7 /* AsteroidListView.swift */; };
+		AD48D78925F1946F0077200F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD48D78725F1946E0077200F /* LoadingView.swift */; };
+		AD48D78A25F1946F0077200F /* LoadingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD48D78825F1946F0077200F /* LoadingScene.swift */; };
 		AD5FD14025E7018C0088551C /* SizeComparisonScene3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FD13E25E7018C0088551C /* SizeComparisonScene3D.swift */; };
 		AD5FD14125E7018C0088551C /* SizeComparison3D.scn in Resources */ = {isa = PBXBuildFile; fileRef = AD5FD13F25E7018C0088551C /* SizeComparison3D.scn */; };
 		AD62D64C25D5B7D200B40870 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD62D64B25D5B7D200B40870 /* InfoView.swift */; };
@@ -57,6 +59,8 @@
 		AD164B2425BB51370035B473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD164B2925BB51370035B473 /* Asteroid WatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Asteroid WatchUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD19CB3025C042D8000DF7D7 /* AsteroidListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidListView.swift; sourceTree = "<group>"; };
+		AD48D78725F1946E0077200F /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		AD48D78825F1946F0077200F /* LoadingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScene.swift; sourceTree = "<group>"; };
 		AD5FD13E25E7018C0088551C /* SizeComparisonScene3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeComparisonScene3D.swift; sourceTree = "<group>"; };
 		AD5FD13F25E7018C0088551C /* SizeComparison3D.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SizeComparison3D.scn; sourceTree = "<group>"; };
 		AD62D64B25D5B7D200B40870 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 		AD164B0A25BB51350035B473 /* Asteroid Watch */ = {
 			isa = PBXGroup;
 			children = (
+				AD48D78825F1946F0077200F /* LoadingScene.swift */,
+				AD48D78725F1946E0077200F /* LoadingView.swift */,
 				AD80604425E86352002D2D7F /* Images */,
 				AD5FD13F25E7018C0088551C /* SizeComparison3D.scn */,
 				AD5FD13E25E7018C0088551C /* SizeComparisonScene3D.swift */,
@@ -308,10 +314,12 @@
 				AD164B0C25BB51360035B473 /* Asteroid_WatchApp.swift in Sources */,
 				ADB3A14A25BF693C00528F3D /* SearchView.swift in Sources */,
 				AD19CB3125C042D8000DF7D7 /* AsteroidListView.swift in Sources */,
+				AD48D78925F1946F0077200F /* LoadingView.swift in Sources */,
 				AD864C8525D47E68002689FB /* ComparisonSettingsView.swift in Sources */,
 				ADDA558D25CEFCA000CD8FCA /* AsteroidViewItemScene.swift in Sources */,
 				AD80604325E86118002D2D7F /* ComparisonSequenceView.swift in Sources */,
 				ADB3A14525BF5BCE00528F3D /* MainView.swift in Sources */,
+				AD48D78A25F1946F0077200F /* LoadingScene.swift in Sources */,
 				ADC9CC6325CF0E1E0045558A /* AsteroidViewItem.swift in Sources */,
 				AD5FD14025E7018C0088551C /* SizeComparisonScene3D.swift in Sources */,
 				ADF2DBFE25D7FD6000A26A08 /* Comparison.swift in Sources */,

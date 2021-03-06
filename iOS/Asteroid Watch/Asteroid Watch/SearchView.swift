@@ -18,6 +18,8 @@ struct SearchView: View {
     
     @State var errorOccurred: Bool = false
     
+    @State var loading = false
+    
     func getRange(startDate: Date, endDate: Date) -> ClosedRange<Date> {
         let startDate2 = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
         let endDate2 = Calendar.current.dateComponents([.year, .month, .day], from: endDate)
@@ -27,7 +29,7 @@ struct SearchView: View {
     }
     
     var body: some View {
-        if asteroids.isEmpty {
+        if asteroids.isEmpty && (!loading || errorOccurred) {
             VStack {
                 Text("Welcome")
                     .padding(.bottom, 70)
@@ -41,26 +43,22 @@ struct SearchView: View {
                         "Start Date",
                         selection: $startDate,
                         displayedComponents: .date
-                    ).onChange(of: startDate, perform: { value in
-                        if value > endDate {
-                            endDate = value
-                        }
-                    })
+                    )
                     .padding(.top, 30)
+                    .onChange(of: startDate, perform: { [startDate] value in
+                        endDate = self.startDate.advanced(by: startDate.distance(to: endDate))
+                    })
                     DatePicker(
                         "End Date",
                         selection: $endDate,
                         in: getRange(startDate: startDate, endDate: startDate.advanced(by: 3600 * 24 * 7)),
                         displayedComponents: .date
-                    ).onChange(of: endDate, perform: { value in
-                        if value < startDate {
-                            startDate = value
-                        }
-                    })
+                    )
                     .padding(.bottom, 30)
                 }
                 .padding(.horizontal, 80)
                 Button("Search") {
+                    loading = true
                     api.getAsteroids(
                         dateRange: startDate...endDate
                     ).sink(
@@ -77,6 +75,7 @@ struct SearchView: View {
                             self.asteroids = asteroids.sorted(by: { a1, _ in
                                 a1.isHazardous
                             })
+                            loading = false
                         }
                     ).store(in: &bag)
                 }
@@ -91,8 +90,10 @@ struct SearchView: View {
                 }
                 .padding(.bottom, 100)
             }
-        } else {
+        } else if !loading {
             InfoView(asteroids: $asteroids, showsComparison: false)
+        } else {
+            LoadingView()
         }
     }
 }
