@@ -48,6 +48,7 @@ struct SearchView: View {
                     .onChange(of: startDate, perform: { [startDate] value in
                         endDate = self.startDate.advanced(by: startDate.distance(to: endDate))
                     })
+                    .frame(width: 250, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     DatePicker(
                         "End Date",
                         selection: $endDate,
@@ -55,6 +56,7 @@ struct SearchView: View {
                         displayedComponents: .date
                     )
                     .padding(.bottom, 30)
+                    .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
                 .padding(.horizontal, 80)
                 Button("Search") {
@@ -106,7 +108,7 @@ struct SearchView_Previews: PreviewProvider {
             SearchView()
                 .previewDevice("iPhone 11")
             SearchView()
-                .previewDevice("iPhone 8")
+                .previewDevice("iPad Pro (12.9-inch) (4th generation)")
         }
     }
 }

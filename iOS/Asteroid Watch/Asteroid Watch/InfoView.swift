@@ -18,21 +18,19 @@ struct InfoView: View {
     
     //@State private var selectedTab = 1
     
-    @State var orientation = UIDevice.current.orientation {
-        willSet {
-            if newValue == .portrait {
-                showsComparison = false
-            }
-        }
-    }
-    
+//    @State var orientation = UIDevice.current.orientation
+//
     let orientationChanged = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
         .makeConnectable()
         .autoconnect()
 
+//    let sizeChanged = UIScreen.main.publisher(for: \.bounds)
+//        .makeConnectable()
+//        .autoconnect()
+    
     var body: some View {
         Group {
-            if !orientation.isLandscape {
+            if !showsComparison {
                 NavigationView {
                     AsteroidListView(asteroids: asteroids, sortBy: sortBy)
                         .navigationBarItems(
@@ -80,7 +78,12 @@ struct InfoView: View {
             }
         }
         .onReceive(orientationChanged) { _ in
-            self.orientation = UIDevice.current.orientation
+            let size = UIScreen.main.bounds.size
+            if size.width > size.height {
+                showsComparison = true
+            } else {
+                showsComparison = false
+            }
         }
     }
     
@@ -121,7 +124,7 @@ struct InfoView_Previews: PreviewProvider {
                     )
                 ]
             ), showsComparison: false)
-            .previewDevice("iPhone 8")
+            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
         }
     }
 }

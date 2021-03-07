@@ -9,7 +9,6 @@ import SwiftUI
 import AsteroidWatchAPI
 
 struct AsteroidViewItem: View {
-    //let tex: SKTexture
     
     let asteroid: Asteroid
     
@@ -21,18 +20,8 @@ struct AsteroidViewItem: View {
         .aspectRatio(
             .init(width: 400, height: 200), contentMode: .fit
         )
-//        Image(uiImage: UIImage(cgImage: tex.cgImage()))
-//            .resizable()
-//            .aspectRatio(contentMode: .fit)
     }
     
-//    init(asteroid: Asteroid) {
-////        let view = SKView(frame: .init(origin: .zero, size: .init(width: 400, height: 200)))
-//        self.scene = AsteroidViewItemScene(asteroid: asteroid)
-////        view.presentScene(scene)
-////        let tex = view.texture(from: scene)!
-////        self.tex = tex
-//    }
 }
 
 struct AsteroidViewItem_Previews: PreviewProvider {
