@@ -6,16 +6,29 @@
 //
 
 import SwiftUI
+import AsteroidWatchAPI
 
 struct MainView: View {
     
+    @State var asteroids: [Asteroid] = []
+        
+    @State var loading = false
+    
+    @State var errorOccurred: Bool
+        
     var body: some View {
-        SearchView()
+        if asteroids.isEmpty && (!loading || errorOccurred) {
+            SearchView(errorOccurred: $errorOccurred, asteroids: $asteroids)
+        } else if !loading {
+            InfoView(asteroids: $asteroids)
+        } else {
+            LoadingView()
+        }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(errorOccurred: false)
     }
 }

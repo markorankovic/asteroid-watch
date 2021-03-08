@@ -13,7 +13,7 @@ struct Asteroid_WatchApp: App {
         
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(errorOccurred: false)
                 .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
                 .ignoresSafeArea()
         }

@@ -9,16 +9,17 @@ import SwiftUI
 import AsteroidWatchAPI
 
 struct SearchView: View {
-    @State var startDate: Foundation.Date = Date()
-    @State var endDate: Foundation.Date = Date()
     
     let api = NASAAPI()
-    
-    @State var asteroids: [Asteroid] = []
-    
-    @State var errorOccurred: Bool = false
+
+    @State var startDate: Foundation.Date = Date()
+    @State var endDate: Foundation.Date = Date()
+
+    @Binding var errorOccurred: Bool
     
     @State var loading = false
+    
+    @Binding var asteroids: [Asteroid]
     
     func getRange(startDate: Date, endDate: Date) -> ClosedRange<Date> {
         let startDate2 = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
@@ -29,73 +30,67 @@ struct SearchView: View {
     }
     
     var body: some View {
-        if asteroids.isEmpty && (!loading || errorOccurred) {
-            VStack {
-                Text("Welcome")
-                    .padding(.bottom, 70)
-                    .padding(.top, 50)
-                    .font(.headline)
-                Image("asteroid")
-                    .resizable()
-                    .padding(.horizontal, 20)
-                Group {
-                    DatePicker(
-                        "Start Date",
-                        selection: $startDate,
-                        displayedComponents: .date
-                    )
-                    .padding(.top, 30)
-                    .onChange(of: startDate, perform: { [startDate] value in
-                        endDate = self.startDate.advanced(by: startDate.distance(to: endDate))
-                    })
-                    .frame(width: 250, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    DatePicker(
-                        "End Date",
-                        selection: $endDate,
-                        in: getRange(startDate: startDate, endDate: startDate.advanced(by: 3600 * 24 * 7)),
-                        displayedComponents: .date
-                    )
-                    .padding(.bottom, 30)
-                    .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal, 80)
-                Button("Search") {
-                    loading = true
-                    api.getAsteroids(
-                        dateRange: startDate...endDate
-                    ).sink(
-                        receiveCompletion: { completion in
-                            switch completion {
-                            case .failure(_): errorOccurred = true
-                            case .finished:
-                                print("Done with no errors.")
-                            }
-                        },
-                        receiveValue: { asteroids in
-                            // Transition to asteroid list
-                            print("Received asteroids")
-                            self.asteroids = asteroids.sorted(by: { a1, _ in
-                                a1.isHazardous
-                            })
-                            loading = false
-                        }
-                    ).store(in: &bag)
-                }
-                .alert(isPresented: $errorOccurred) {
-                    Alert(
-                        title: Text("Error"),
-                        message: Text("Error occurred."),
-                        dismissButton: Alert.Button.destructive(Text("Ok")) {
-                            errorOccurred = false
-                        }
-                    )
-                }
-                .padding(.bottom, 100)
+        VStack {
+            Text("Welcome")
+                .padding(.bottom, 70)
+                .padding(.top, 50)
+                .font(.headline)
+            Image("asteroid")
+                .resizable()
+                .padding(.horizontal, 20)
+            Group {
+                DatePicker(
+                    "Start Date",
+                    selection: $startDate,
+                    displayedComponents: .date
+                )
+                .padding(.top, 30)
+                .onChange(of: startDate, perform: { [startDate] value in
+                    endDate = self.startDate.advanced(by: startDate.distance(to: endDate))
+                })
+                .frame(width: 250, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                DatePicker(
+                    "End Date",
+                    selection: $endDate,
+                    in: getRange(startDate: startDate, endDate: startDate.advanced(by: 3600 * 24 * 7)),
+                    displayedComponents: .date
+                )
+                .padding(.bottom, 30)
+                .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
-        } else if !loading {
-            InfoView(asteroids: $asteroids, showsComparison: false)
-        } else {
-            LoadingView()
+            .padding(.horizontal, 80)
+            Button("Search") {
+                loading = true
+                api.getAsteroids(
+                    dateRange: startDate...endDate
+                ).sink(
+                    receiveCompletion: { completion in
+                        switch completion {
+                        case .failure(_): errorOccurred = true
+                        case .finished:
+                            print("Done with no errors.")
+                        }
+                    },
+                    receiveValue: { asteroids in
+                        // Transition to asteroid list
+                        print("Received asteroids")
+                        self.asteroids = asteroids.sorted(by: { a1, _ in
+                            a1.isHazardous
+                        })
+                        loading = false
+                    }
+                ).store(in: &bag)
+            }
+            .alert(isPresented: $errorOccurred) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text("Error occurred."),
+                    dismissButton: Alert.Button.destructive(Text("Ok")) {
+                        errorOccurred = false
+                    }
+                )
+            }
+            .padding(.bottom, 100)
         }
     }
 }
@@ -105,9 +100,9 @@ var bag: [AnyCancellable] = []
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SearchView()
+            SearchView(errorOccurred: .constant(false), asteroids: .constant([]))
                 .previewDevice("iPhone 11")
-            SearchView()
+            SearchView(errorOccurred: .constant(false), asteroids: .constant([]))
                 .previewDevice("iPad Pro (12.9-inch) (4th generation)")
         }
     }
