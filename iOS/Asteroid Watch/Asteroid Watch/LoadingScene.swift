@@ -19,7 +19,7 @@ public class LoadingScene: SKScene {
         }.store(in: &bag)
         
         DispatchQueue.main.async {
-            let downloadingText = SKLabelNode(text: "Loading")
+            let downloadingText = SKLabelNode(text: "Loading Data from NASA")
             downloadingText.position.x += self.size.width / 2
             downloadingText.position.y += self.size.height / 2
             downloadingText.zPosition = 5

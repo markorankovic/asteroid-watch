@@ -17,7 +17,7 @@ struct SearchView: View {
 
     @Binding var errorOccurred: Bool
     
-    @State var loading = false
+    @Binding var loading: Bool
     
     @Binding var asteroids: [Asteroid]
     
@@ -100,9 +100,9 @@ var bag: [AnyCancellable] = []
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SearchView(errorOccurred: .constant(false), asteroids: .constant([]))
+            SearchView(errorOccurred: .constant(false), loading: .constant(false), asteroids: .constant([]))
                 .previewDevice("iPhone 11")
-            SearchView(errorOccurred: .constant(false), asteroids: .constant([]))
+            SearchView(errorOccurred: .constant(false), loading: .constant(false), asteroids: .constant([]))
                 .previewDevice("iPad Pro (12.9-inch) (4th generation)")
         }
     }

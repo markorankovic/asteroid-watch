@@ -18,7 +18,7 @@ struct MainView: View {
         
     var body: some View {
         if asteroids.isEmpty && (!loading || errorOccurred) {
-            SearchView(errorOccurred: $errorOccurred, asteroids: $asteroids)
+            SearchView(errorOccurred: $errorOccurred, loading: $loading, asteroids: $asteroids)
         } else if !loading {
             InfoView(asteroids: $asteroids)
         } else {
