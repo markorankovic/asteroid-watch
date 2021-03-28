@@ -1,10 +1,13 @@
 import SpriteKit
 import AsteroidWatchAPI
+import SwiftUI
 
 public class AsteroidViewItemScene: SKScene {
     
     var asteroid: Asteroid?
-        
+    
+    var initialized = false
+    
     public override init() {
         super.init()
         self.scaleMode = .fill
@@ -46,18 +49,21 @@ public class AsteroidViewItemScene: SKScene {
     
     public override func didMove(to view: SKView) {
         self.backgroundColor = .clear
-        
-        guard let asteroid = asteroid else { return }
-        
-        //addStars()
+        if !initialized {
+            initAsteroid()
+        }
+    }
+    
+    func initAsteroid() {
+        guard let asteroid = self.asteroid else { return }
         
         let asteroidTemplate = (childNode(withName: "asteroid") as? SKSpriteNode)!
         
         asteroidTemplate.removeFromParent()
         
-        let asteroidNode: SKShapeNode = asteroid.visualNode.node2D ?? AsteroidGenerator.generateAsteroid(
-            size: asteroidTemplate.size
-        ) ?? SKShapeNode()
+        let asteroidNode: SKShapeNode = AsteroidGenerator.generateAsteroid(
+                size: asteroidTemplate.size
+            ) ?? SKShapeNode()
         
         asteroidNode.zPosition = -1
         asteroidNode.position = .init(
@@ -71,6 +77,8 @@ public class AsteroidViewItemScene: SKScene {
         (childNode(withName: "miss_distance") as? SKLabelNode)?.text = "\(numberFormatter.string(from: NSNumber(value: Int(asteroid.missDistance)))!) km"
         (childNode(withName: "diameter") as? SKLabelNode)?.text = "\(numberFormatter.string(from: NSNumber(value: Int(asteroid.diameter)))!) m"
         (childNode(withName: "alert") as? SKSpriteNode)?.alpha = asteroid.isHazardous ? 1 : 0
+        
+        initialized = true
     }
     
     let numberFormatter: NumberFormatter = {

@@ -113,13 +113,13 @@ class SizeComparisonScene3D: SCNScene {
             let tex = SKTexture(noiseMap: noise)
             
             sphere.firstMaterial!.displacement.contents = tex
-            sphere.firstMaterial!.displacement.intensity = r
+            sphere.firstMaterial!.displacement.intensity = 1
             sphere.firstMaterial!.diffuse.contents = UIImage(named: "asteroid_tex\(Int.random(in: 1...10))")
             
             let asteroid = SCNNode(geometry: sphere)
             asteroid.name = "asteroid"
             asteroid.position.x += Float(5 * r) / 2 + Float(prevDiameter) + Float(prevX)
-            asteroid.position.y += Float(r + (r * 4)/5)
+            asteroid.position.y += Float(r)
             
             let str = "\(a.name)"
             let fontsize = diameter / 10

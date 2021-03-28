@@ -68,5 +68,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "419CDC9B-F4C9-4C4E-A483-25CFDAE06081"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Asteroid Watch/AsteroidViewItemScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "initAsteroid()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "419CDC9B-F4C9-4C4E-A483-25CFDAE06081 - c3b0581e9f449932"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Asteroid_Watch.AsteroidViewItemScene.initAsteroid() -&gt; ()"
+                  moduleName = "Asteroid Watch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/marko/Desktop/asteroid-watch/iOS/Asteroid%20Watch/Asteroid%20Watch/AsteroidViewItemScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "340">
+               </Location>
+               <Location
+                  uuid = "419CDC9B-F4C9-4C4E-A483-25CFDAE06081 - c3b0581e9f449932"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Asteroid_Watch.AsteroidViewItemScene.initAsteroid() -&gt; ()"
+                  moduleName = "Asteroid Watch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/marko/Desktop/asteroid-watch/iOS/Asteroid%20Watch/Asteroid%20Watch/AsteroidViewItemScene.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "6352">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
