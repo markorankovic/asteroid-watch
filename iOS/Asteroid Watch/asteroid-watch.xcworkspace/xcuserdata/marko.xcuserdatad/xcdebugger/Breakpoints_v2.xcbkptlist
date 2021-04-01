@@ -116,6 +116,7 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+<<<<<<< HEAD
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
@@ -148,5 +149,7 @@
             landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
+=======
+>>>>>>> parent of d7181ae (ScrollView's position saved using TabView, transitioning between list and comparison lags)
    </Breakpoints>
 </Bucket>

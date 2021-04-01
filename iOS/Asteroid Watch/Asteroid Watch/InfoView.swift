@@ -13,15 +13,19 @@ struct InfoView: View {
     var asteroids: Binding<[Asteroid]>
         
     @State var sortBy: Sort = .potentiallyHazardous
+<<<<<<< HEAD
     
 <<<<<<< HEAD
     @State var selection: Int = 0
     
 =======
 >>>>>>> parent of 34e45c5 (User data introduced & comparator defined in one place)
+=======
+
+>>>>>>> parent of d7181ae (ScrollView's position saved using TabView, transitioning between list and comparison lags)
     var body: some View {
         GeometryReader { g in
-            TabView(selection: $selection) {
+            if g.size.height > g.size.width {
                 NavigationView {
                     AsteroidListView(asteroids: asteroids, sortBy: sortBy)
                         .navigationBarItems(
@@ -62,6 +66,7 @@ struct InfoView: View {
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
 <<<<<<< HEAD
+<<<<<<< HEAD
                 .tag(0)
             
                 Group {
@@ -86,8 +91,24 @@ struct InfoView: View {
             .onChange(of: g.size) { _ in
                 if g.size.height > g.size.width {
                     selection = 0
+=======
+            } else {
+                if let scene = userData.comparisonScene {
+                    ComparisonSequenceView(
+                        comparisonScene: scene
+                    )
+>>>>>>> parent of d7181ae (ScrollView's position saved using TabView, transitioning between list and comparison lags)
                 } else {
-                    selection = 1
+                    let scene: SizeComparisonScene3D = {
+                        let s = SizeComparisonScene3D(
+                            asteroids: userData.asteroids
+                        )
+                        userData.comparisonScene = s
+                        return s
+                    }()
+                    ComparisonSequenceView(
+                        comparisonScene: scene
+                    )
                 }
 =======
             } else {

@@ -24,7 +24,6 @@ struct LoadingView: View {
             }
             .navigationBarItems( // Only for matching the image alignment with the InfoView
                 leading:
-                    HStack {
                         
                     }
             )
