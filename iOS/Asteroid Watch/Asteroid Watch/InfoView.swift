@@ -13,10 +13,12 @@ struct InfoView: View {
     @EnvironmentObject var userData: UserData
     
     @State var sortBy: Sort = .potentiallyHazardous
-
+    
+    @State var selection: Int = 0
+    
     var body: some View {
         GeometryReader { g in
-            if g.size.height > g.size.width {
+            TabView(selection: $selection) {
                 NavigationView {
                     AsteroidListView(sortBy: sortBy)
                         .environmentObject(userData)
@@ -57,22 +59,32 @@ struct InfoView: View {
                         )
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
-            } else {
-                if let scene = userData.comparisonScene {
-                    ComparisonSequenceView(
-                        comparisonScene: scene
-                    )
-                } else {
-                    let scene: SizeComparisonScene3D = {
-                        let s = SizeComparisonScene3D(
-                            asteroids: userData.asteroids
+                .tag(0)
+            
+                Group {
+                    if let scene = userData.comparisonScene {
+                        ComparisonSequenceView(
+                            comparisonScene: scene
                         )
-                        userData.comparisonScene = s
-                        return s
-                    }()
-                    ComparisonSequenceView(
-                        comparisonScene: scene
-                    )
+                    } else {
+                        let scene: SizeComparisonScene3D = {
+                            let s = SizeComparisonScene3D(
+                                asteroids: userData.asteroids
+                            )
+                            userData.comparisonScene = s
+                            return s
+                        }()
+                        ComparisonSequenceView(
+                            comparisonScene: scene
+                        )
+                    }
+                }.tag(1)
+            }
+            .onChange(of: g.size) { _ in
+                if g.size.height > g.size.width {
+                    selection = 0
+                } else {
+                    selection = 1
                 }
             }
         }
