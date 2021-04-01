@@ -12,15 +12,15 @@ struct LoadingView: View {
     
     var body: some View {
         GeometryReader { g in
-            NavigationView {
-                SpriteView(
-                    scene: LoadingScene(size: g.size),
-                    options: [.allowsTransparency]
-                )
+            SpriteView(
+                scene: LoadingScene(size: g.size),
+                options: [.allowsTransparency]
+            )
                 .background(
                     Image("universe")
                         .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
                 )
+<<<<<<< HEAD
             }
             .navigationBarItems( // Only for matching the image alignment with the InfoView
                 leading:
@@ -28,6 +28,8 @@ struct LoadingView: View {
                         
                     }
             )
+=======
+>>>>>>> parent of 34e45c5 (User data introduced & comparator defined in one place)
         }
     }
     

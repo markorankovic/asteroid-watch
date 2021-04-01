@@ -10,24 +10,26 @@ enum Sort {
 
 struct InfoView: View {
         
-    @EnvironmentObject var userData: UserData
-    
+    var asteroids: Binding<[Asteroid]>
+        
     @State var sortBy: Sort = .potentiallyHazardous
     
+<<<<<<< HEAD
     @State var selection: Int = 0
     
+=======
+>>>>>>> parent of 34e45c5 (User data introduced & comparator defined in one place)
     var body: some View {
         GeometryReader { g in
             TabView(selection: $selection) {
                 NavigationView {
-                    AsteroidListView(sortBy: sortBy)
-                        .environmentObject(userData)
+                    AsteroidListView(asteroids: asteroids, sortBy: sortBy)
                         .navigationBarItems(
                             leading:
                                 HStack {
                                     Button(
                                         action: {
-                                            userData.asteroids = []
+                                            self.asteroids.wrappedValue = []
                                         }
                                     ) {
                                         HStack {
@@ -59,6 +61,7 @@ struct InfoView: View {
                         )
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
+<<<<<<< HEAD
                 .tag(0)
             
                 Group {
@@ -86,6 +89,14 @@ struct InfoView: View {
                 } else {
                     selection = 1
                 }
+=======
+            } else {
+                ComparisonSequenceView(
+                    comparisonScene: SizeComparisonScene3D(
+                        asteroids: asteroids.wrappedValue
+                    )
+                )
+>>>>>>> parent of 34e45c5 (User data introduced & comparator defined in one place)
             }
         }
     }
@@ -101,7 +112,47 @@ struct SortMenu: MenuStyle {
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            InfoView()
+            InfoView(asteroids: Binding.constant(
+                [
+                    Asteroid(
+                        id: "2517681",
+                        name: "2015 DE198",
+                        diameter: (1081.533506775 + 483.6764882185) / 2,
+                        missDistance: 28047702.990978837,
+                        velocity: 45093.5960746662,
+                        date: nil,
+                        isHazardous: true
+                    )
+                ]
+            ))
+            InfoView(asteroids: Binding.constant(
+                [
+                    Asteroid(
+                        id: "2517681",
+                        name: "2015 DE198",
+                        diameter: (1081.533506775 + 483.6764882185) / 2,
+                        missDistance: 28047702.990978837,
+                        velocity: 45093.5960746662,
+                        date: nil,
+                        isHazardous: true
+                    )
+                ]
+            ))
+            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+            InfoView(asteroids: Binding.constant(
+                [
+                    Asteroid(
+                        id: "2517681",
+                        name: "2015 DE198",
+                        diameter: (1081.533506775 + 483.6764882185) / 2,
+                        missDistance: 28047702.990978837,
+                        velocity: 45093.5960746662,
+                        date: nil,
+                        isHazardous: true
+                    )
+                ]
+            ))
+            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
         }
     }
 }
