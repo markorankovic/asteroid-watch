@@ -8,19 +8,26 @@
 import SwiftUI
 import AsteroidWatchAPI
 
+public class UserData: ObservableObject {
+    @Published public var asteroids: [Asteroid] = []
+    public var asteroidViewItems: [AsteroidViewItemScene] = []
+    var comparisonScene: SizeComparisonScene3D?
+}
+
 struct MainView: View {
-    
-    @State var asteroids: [Asteroid] = []
-        
-    @State var loading = false
-    
     @State var errorOccurred: Bool
-        
+    
+    @StateObject var userData = UserData()
+    
+    @State var loading: Bool
+                
     var body: some View {
-        if asteroids.isEmpty && (!loading || errorOccurred) {
-            SearchView(errorOccurred: $errorOccurred, loading: $loading, asteroids: $asteroids)
+        if userData.asteroids.isEmpty && (!loading || errorOccurred) {
+            SearchView(errorOccurred: $errorOccurred, loading: .constant(false))
+                .environmentObject(userData)
         } else if !loading {
-            InfoView(asteroids: $asteroids)
+            InfoView()
+                .environmentObject(userData)
         } else {
             LoadingView()
         }
@@ -29,6 +36,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(errorOccurred: false)
+        MainView(errorOccurred: false, loading: false)
     }
 }

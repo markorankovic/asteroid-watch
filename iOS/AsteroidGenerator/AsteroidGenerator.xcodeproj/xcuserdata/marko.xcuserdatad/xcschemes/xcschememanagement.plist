@@ -7,11 +7,7 @@
 		<key>AsteroidGenerator.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>2</integer>
-=======
-			<integer>4</integer>
->>>>>>> parent of d7181ae (ScrollView's position saved using TabView, transitioning between list and comparison lags)
+			<integer>5</integer>
 		</dict>
 	</dict>
 </dict>

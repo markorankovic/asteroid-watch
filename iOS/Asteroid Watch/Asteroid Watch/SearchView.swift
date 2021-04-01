@@ -19,7 +19,7 @@ struct SearchView: View {
     
     @Binding var loading: Bool
     
-    @Binding var asteroids: [Asteroid]
+    @EnvironmentObject var userData: UserData
     
     func getRange(startDate: Date, endDate: Date) -> ClosedRange<Date> {
         let startDate2 = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
@@ -60,6 +60,7 @@ struct SearchView: View {
             }
             .padding(.horizontal, 80)
             Button("Search") {
+                userData.asteroidViewItems = []
                 loading = true
                 api.getAsteroids(
                     dateRange: startDate...endDate
@@ -72,12 +73,16 @@ struct SearchView: View {
                         }
                     },
                     receiveValue: { asteroids in
-                        // Transition to asteroid list
-                        print("Received asteroids")
-                        self.asteroids = asteroids.sorted(by: { a1, _ in
-                            a1.isHazardous
-                        })
-                        loading = false
+                        DispatchQueue.main.async {
+                            // Transition to asteroid list
+                            print("Received asteroids")
+                            userData.asteroids = asteroids.sorted(
+                                by: { a1, _ in
+                                    a1.isHazardous
+                                }
+                            )
+                            loading = false
+                        }
                     }
                 ).store(in: &bag)
             }
@@ -100,9 +105,9 @@ var bag: [AnyCancellable] = []
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SearchView(errorOccurred: .constant(false), loading: .constant(false), asteroids: .constant([]))
+            SearchView(errorOccurred: .constant(false), loading: .constant(false))
                 .previewDevice("iPhone 11")
-            SearchView(errorOccurred: .constant(false), loading: .constant(false), asteroids: .constant([]))
+            SearchView(errorOccurred: .constant(false), loading: .constant(false))
                 .previewDevice("iPad Pro (12.9-inch) (4th generation)")
         }
     }
