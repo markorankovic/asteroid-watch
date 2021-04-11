@@ -18,7 +18,6 @@ struct InfoView: View {
     
     var body: some View {
         GeometryReader { g in
-            TabView(selection: $selection) {
                 NavigationView {
                     AsteroidListView(sortBy: sortBy)
                         .environmentObject(userData)
@@ -59,7 +58,6 @@ struct InfoView: View {
                         )
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
-                .tag(0)
             
                 Group {
                     if let scene = userData.comparisonScene {
@@ -78,8 +76,7 @@ struct InfoView: View {
                             comparisonScene: scene
                         )
                     }
-                }.tag(1)
-            }
+                }
             .onChange(of: g.size) { _ in
                 if g.size.height > g.size.width {
                     selection = 0

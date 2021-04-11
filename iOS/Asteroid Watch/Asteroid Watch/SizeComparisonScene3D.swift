@@ -91,6 +91,10 @@ class SizeComparisonScene3D: SCNScene {
         rootNode.addChildNode(node)
     }
     
+//    func initSizeComparables(comparables: [SizeComparable]) {
+//
+//    }
+    
     func initAsteroids(asteroids: [Asteroid]) {
         var prevX: CGFloat = 0
         var prevDiameter: CGFloat = 0
