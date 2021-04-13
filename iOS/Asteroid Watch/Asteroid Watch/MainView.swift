@@ -11,7 +11,7 @@ import AsteroidWatchAPI
 public class UserData: ObservableObject {
     @Published public var asteroids: [Asteroid] = []
     public var asteroidViewItems: [AsteroidViewItemScene] = []
-    var comparisonScene: SizeComparisonScene3D?
+    var comparisonScene: SizeComparisonScene?
 }
 
 struct MainView: View {

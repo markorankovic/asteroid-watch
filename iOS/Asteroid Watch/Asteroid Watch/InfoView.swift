@@ -18,6 +18,8 @@ struct InfoView: View {
     
     var body: some View {
         GeometryReader { g in
+            
+            if g.size.height > g.size.width {
                 NavigationView {
                     AsteroidListView(sortBy: sortBy)
                         .environmentObject(userData)
@@ -58,15 +60,15 @@ struct InfoView: View {
                         )
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
-            
+            } else {
                 Group {
                     if let scene = userData.comparisonScene {
                         ComparisonSequenceView(
                             comparisonScene: scene
                         )
                     } else {
-                        let scene: SizeComparisonScene3D = {
-                            let s = SizeComparisonScene3D(
+                        let scene: SizeComparisonScene = {
+                            let s = SizeComparisonScene(
                                 asteroids: userData.asteroids
                             )
                             userData.comparisonScene = s
@@ -76,12 +78,6 @@ struct InfoView: View {
                             comparisonScene: scene
                         )
                     }
-                }
-            .onChange(of: g.size) { _ in
-                if g.size.height > g.size.width {
-                    selection = 0
-                } else {
-                    selection = 1
                 }
             }
         }

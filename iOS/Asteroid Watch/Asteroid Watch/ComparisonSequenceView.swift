@@ -3,7 +3,7 @@ import SceneKit
 import AsteroidWatchAPI
 
 struct ComparisonSequenceView: View {
-    let comparisonScene: SizeComparisonScene3D
+    let comparisonScene: SizeComparisonScene
 
     var body: some View {
         SceneView(
@@ -24,7 +24,7 @@ struct ComparisonSequenceView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ComparisonSequenceView(comparisonScene: SizeComparisonScene3D(asteroids: [
+        ComparisonSequenceView(comparisonScene: SizeComparisonScene(asteroids: [
             Asteroid(
                 id: "2517681",
                 name: "2015 DE198",
