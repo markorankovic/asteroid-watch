@@ -16,9 +16,7 @@ struct SearchView: View {
     @State var endDate: Foundation.Date = Date()
 
     @Binding var errorOccurred: Bool
-    
-    @Binding var loading: Bool
-    
+        
     @EnvironmentObject var userData: UserData
     
     func getRange(startDate: Date, endDate: Date) -> ClosedRange<Date> {
@@ -61,7 +59,7 @@ struct SearchView: View {
             .padding(.horizontal, 80)
             Button("Search") {
                 userData.asteroidViewItems = []
-                loading = true
+                userData.loading = true
                 api.getAsteroids(
                     dateRange: startDate...endDate
                 ).sink(
@@ -81,7 +79,7 @@ struct SearchView: View {
                                     a1.isHazardous
                                 }
                             )
-                            loading = false
+                            userData.loading = false
                         }
                     }
                 ).store(in: &bag)
@@ -105,9 +103,9 @@ var bag: [AnyCancellable] = []
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SearchView(errorOccurred: .constant(false), loading: .constant(false))
+            SearchView(errorOccurred: .constant(false))
                 .previewDevice("iPhone 11")
-            SearchView(errorOccurred: .constant(false), loading: .constant(false))
+            SearchView(errorOccurred: .constant(false))
                 .previewDevice("iPad Pro (12.9-inch) (4th generation)")
         }
     }

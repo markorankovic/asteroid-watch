@@ -16,8 +16,8 @@ class SizeComparisonScene: SCNScene {
             diameter: 830,
             node: {
                 let node = SCNScene(
-                named: "models.scnassets/Burj_Khalifa_Dubai.usdz"
-                )!.rootNode.childNodes[0].childNodes[0]
+                named: "models.scnassets/untitled.dae"
+                )!.rootNode
                 node.name = "comparable"
                 return node
             }(),
@@ -195,20 +195,26 @@ class SizeComparisonScene: SCNScene {
         })
     }
     
-    func applyPivot(reference: SizeComparable) {
-        let min = float3(reference.node.boundingBox.min)
-        let max = float3(reference.node.boundingBox.max)
-        let translation = (max - min) / 2
-        reference.node.pivot = SCNMatrix4MakeTranslation(
-            translation.x,
-            0,
-            -translation.z
-        )
-    }
+//    func applyPivot(reference: SizeComparable) {
+//        let min = float3(reference.node.boundingBox.min)
+//        let max = float3(reference.node.boundingBox.max)
+//        let translation = (max - min) / 2
+//        reference.node.pivot = SCNMatrix4MakeTranslation(
+//            translation.x,
+//            0,
+//            -translation.z
+//        )
+//    }
     
     func addReferencesToComparables() {
         for reference in references {
-            applyPivot(reference: reference)
+            //applyPivot(reference: reference)
+            reference.node.scale = .init(
+                reference.diameter / asteroids.first!.diameter,
+                reference.diameter / asteroids.first!.diameter,
+                reference.diameter / asteroids.first!.diameter
+            )
+            print("Size: \(reference.node.boundingBox)")
         }
 
         let maxNReferences = min(asteroids.count / 5, references.count)
@@ -224,7 +230,7 @@ class SizeComparisonScene: SCNScene {
     
     func initComparables() {
         addAsteroidsToComparables()
-        addReferencesToComparables()
+        //addReferencesToComparables()
         
         var prevX: CGFloat = 0
         var prevDiameter: CGFloat = 0
