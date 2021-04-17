@@ -16,7 +16,7 @@ class SizeComparisonScene: SCNScene {
             diameter: 830,
             node: {
                 let node = SCNScene(
-                named: "models.scnassets/untitled.dae"
+                named: "models.scnassets/burj_khalifa.obj"
                 )!.rootNode
                 node.name = "comparable"
                 return node
@@ -107,9 +107,13 @@ class SizeComparisonScene: SCNScene {
         rootNode.addChildNode(node)
     }
     
-    func initComparablePos(_ comparable: SCNNode, _ r: CGFloat, _ prevX: CGFloat, _ prevDiameter: CGFloat) {
+    func initComparablePos(_ comparable: SCNNode, _ prevX: CGFloat, _ prevDiameter: CGFloat) {
         comparable.position.x = Float(5 * (comparable.width / 2)) / 2 + Float(prevDiameter) + Float(prevX)
-        comparable.position.y += Float(comparable.depth * CGFloat(comparable.scale.z)) - comparable.position.y
+        if let _ = comparable.geometry?.firstMaterial?.displacement.intensity {
+            comparable.position.y = comparable.boundingBox.max.y - comparable.boundingBox.min.y
+        } else {
+            comparable.position.y = Float(comparable.height / 2)
+        }
         print("Pos X: \(comparable.position.x)")
         print("Pos Y: \(comparable.position.y)")
     }
@@ -194,27 +198,15 @@ class SizeComparisonScene: SCNScene {
             return comparable
         })
     }
-    
-//    func applyPivot(reference: SizeComparable) {
-//        let min = float3(reference.node.boundingBox.min)
-//        let max = float3(reference.node.boundingBox.max)
-//        let translation = (max - min) / 2
-//        reference.node.pivot = SCNMatrix4MakeTranslation(
-//            translation.x,
-//            0,
-//            -translation.z
-//        )
-//    }
-    
+        
     func addReferencesToComparables() {
+        let smallestAsteroid = asteroids.min(by: { $0.diameter < $1.diameter })!
         for reference in references {
-            //applyPivot(reference: reference)
             reference.node.scale = .init(
-                reference.diameter / asteroids.first!.diameter,
-                reference.diameter / asteroids.first!.diameter,
-                reference.diameter / asteroids.first!.diameter
+                reference.diameter / smallestAsteroid.diameter,
+                reference.diameter / smallestAsteroid.diameter,
+                reference.diameter / smallestAsteroid.diameter
             )
-            print("Size: \(reference.node.boundingBox)")
         }
 
         let maxNReferences = min(asteroids.count / 5, references.count)
@@ -230,8 +222,8 @@ class SizeComparisonScene: SCNScene {
     
     func initComparables() {
         addAsteroidsToComparables()
-        //addReferencesToComparables()
-        
+        addReferencesToComparables()
+                
         var prevX: CGFloat = 0
         var prevDiameter: CGFloat = 0
         let comparablesSorted = comparables.sorted(
@@ -242,13 +234,17 @@ class SizeComparisonScene: SCNScene {
         for c in comparablesSorted {
             print("diameter: \(c.diameter)")
             
-            let depth = CGFloat(c.node.boundingBox.max.z - c.node.boundingBox.min.z)
+            var r: CGFloat = 0
             
-            let r = depth / 2
+            if let _ = c.node.geometry?.firstMaterial?.displacement.intensity {
+                r = CGFloat(c.node.boundingBox.max.y - c.node.boundingBox.min.y) / 2
+            } else {
+                r = CGFloat(Float(c.node.height / 2))
+            }
             
             let diameter = r * 2
             
-            initComparablePos(c.node, r, prevX, prevDiameter)
+            initComparablePos(c.node, prevX, prevDiameter)
                         
             initDetails(c: c, r: r, diameter: diameter)
             
