@@ -109,7 +109,7 @@ class SizeComparisonScene: SCNScene {
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.darkGray
+        ambientLightNode.light!.color = UIColor.white
         rootNode.addChildNode(ambientLightNode)
         
         didGetAsteroids()
@@ -175,6 +175,7 @@ class SizeComparisonScene: SCNScene {
         } else {
             comparable.position.y = Float(comparable.height) / 2
         }
+        comparable.position.z += (comparable.boundingBox.max.z - comparable.boundingBox.min.z) / 2
         print("Pos X: \(comparable.position.x)")
         print("Pos Y: \(comparable.position.y)")
     }
@@ -262,7 +263,7 @@ class SizeComparisonScene: SCNScene {
         guard let firstAsteroid = sortedAsteroids.first else {
             return
         }
-                
+        
         comparables.append(contentsOf: sortedAsteroids.map {
             let diameter = CGFloat($0.diameter / firstAsteroid.diameter)
             let comparable = SizeComparable(
@@ -274,7 +275,7 @@ class SizeComparisonScene: SCNScene {
             return comparable
         })
     }
-        
+    
     func addReferencesToComparables() {
         guard let smallestAsteroid = asteroids.min(by: { $0.diameter < $1.diameter }) else {
             return
@@ -287,8 +288,8 @@ class SizeComparisonScene: SCNScene {
                 scale
             )
         }
-
-        let maxNReferences = min(100, references.count)
+        
+        let maxNReferences = references.count
         var i = 1
         while i <= maxNReferences {
             let reference = references.randomElement()!
