@@ -7,7 +7,35 @@ class SizeComparisonScene: SCNScene {
     
     var cameraNode = SCNNode()
     
-    var asteroids: [Asteroid] = []
+    var asteroids: [Asteroid] = [
+        Asteroid(
+            id: "Asteroid 1",
+            name: "Asteroid 1",
+            diameter: 7,
+            missDistance: 0,
+            velocity: 0,
+            date: nil,
+            isHazardous: false
+        ),
+        Asteroid(
+            id: "Asteroid 2",
+            name: "Asteroid 2",
+            diameter: 11,
+            missDistance: 0,
+            velocity: 0,
+            date: nil,
+            isHazardous: false
+        ),
+        Asteroid(
+            id: "Asteroid 3",
+            name: "Asteroid 3",
+            diameter: 831,
+            missDistance: 0,
+            velocity: 0,
+            date: nil,
+            isHazardous: false
+        )
+    ]
     
     var comparables: [SizeComparable] = []
     
@@ -16,12 +44,45 @@ class SizeComparisonScene: SCNScene {
             diameter: 830,
             node: {
                 let node = SCNScene(
-                named: "models.scnassets/burj_khalifa.obj"
+                named: "models.scnassets/burj_khalifa.scn"
                 )!.rootNode
                 node.name = "comparable"
                 return node
             }(),
             name: "Burj Khalifa"
+        ),
+        SizeComparable(
+            diameter: 5,
+            node: {
+                let node = SCNScene(
+                named: "models.scnassets/t-rex.scn"
+                )!.rootNode
+                node.name = "comparable"
+                return node
+            }(),
+            name: "T-Rex"
+        ),
+        SizeComparable(
+            diameter: 10,
+            node: {
+                let node = SCNScene(
+                named: "models.scnassets/house.scn"
+                )!.rootNode
+                node.name = "comparable"
+                return node
+            }(),
+            name: "House"
+        ),
+        SizeComparable(
+            diameter: 1.8,
+            node: {
+                let node = SCNScene(
+                named: "models.scnassets/man.usdc"
+                )!.rootNode
+                node.name = "comparable"
+                return node
+            }(),
+            name: "Man"
         )
     ]
     
@@ -41,7 +102,7 @@ class SizeComparisonScene: SCNScene {
         print("View loaded")
         let camera = SCNCamera()
         camera.zFar = 10000
-        camera.zNear = 0.01
+        camera.zNear = 0.001
         cameraNode.camera = camera
         rootNode.addChildNode(cameraNode)
         
@@ -70,7 +131,7 @@ class SizeComparisonScene: SCNScene {
         initLine(length: length)
         
         cameraNode.position = firstComparable.position
-        cameraNode.position.z += firstComparable.boundingSphere.radius * 6
+        cameraNode.position.z += Float(firstComparable.height / 2 * 6)
         
         cameraNode.constraints = [
             SCNTransformConstraint.positionConstraint(
@@ -110,9 +171,9 @@ class SizeComparisonScene: SCNScene {
     func initComparablePos(_ comparable: SCNNode, _ prevX: CGFloat, _ prevDiameter: CGFloat) {
         comparable.position.x = Float(5 * (comparable.width / 2)) / 2 + Float(prevDiameter) + Float(prevX)
         if let _ = comparable.geometry?.firstMaterial?.displacement.intensity {
-            comparable.position.y = comparable.boundingBox.max.y - comparable.boundingBox.min.y
+            comparable.position.y = Float(comparable.height) / 2
         } else {
-            comparable.position.y = Float(comparable.height / 2)
+            comparable.position.y = Float(comparable.height) / 2
         }
         print("Pos X: \(comparable.position.x)")
         print("Pos Y: \(comparable.position.y)")
@@ -131,16 +192,29 @@ class SizeComparisonScene: SCNScene {
         let tex = SKTexture(noiseMap: noise)
         
         sphere.firstMaterial!.displacement.contents = tex
-        sphere.firstMaterial!.displacement.intensity = r
+        sphere.firstMaterial!.displacement.intensity = (r) / 2
         sphere.firstMaterial!.diffuse.contents = UIImage(named: "asteroid_tex\(Int.random(in: 1...10))")
         
+        print("Radius: \(sphere.boundingSphere.radius)")
+        print("Radius2: \(sphere.radius)")
+        
+        print("Bounding box: \(sphere.boundingBox)")
+        
+        let box = sphere.boundingBox
+        
+        sphere.radius = sphere.radius * sphere.radius / CGFloat(sphere.boundingBox.max.y - sphere.boundingBox.min.y)
+        
+        print("Bounding box 2: \(box)")
+        
+        sphere.boundingBox = box
+
         return sphere
     }
-    
+        
     func initDetails(c: SizeComparable, r: CGFloat, diameter: CGFloat) {
         let str = "\(c.name)"
-        let fontsize = diameter / 10
-        let font = UIFont(name: "COPPERPLATE", size: fontsize)
+        let fontsize = diameter / 7
+        let font = UIFont(name: "Copperplate", size: 1)!
         let nameDetail = SCNNode(
             geometry: {
                 let text = SCNText(string: str, extrusionDepth: 0)
@@ -148,6 +222,7 @@ class SizeComparisonScene: SCNScene {
                 return text
             }()
         )
+        nameDetail.scale = .init(fontsize, fontsize, 1)
         nameDetail.pivot = SCNMatrix4MakeTranslation(
             (nameDetail.boundingBox.max.x - nameDetail.boundingBox.min.x) / 2,
             (nameDetail.boundingBox.min.y),
@@ -155,22 +230,23 @@ class SizeComparisonScene: SCNScene {
         )
         let diameterDetail = SCNNode(
             geometry: {
-                let text = SCNText(string: "\(Int(c.diameter))M", extrusionDepth: 0)
+                let text = SCNText(string: "\(c.diameter > 4.9 ? "\(Int(c.diameter))" : "\(c.diameter)")M", extrusionDepth: 0)
                 text.font = font
                 return text
             }()
         )
+        diameterDetail.scale = .init(fontsize, fontsize, 1)
         diameterDetail.pivot = SCNMatrix4MakeTranslation(
             (diameterDetail.boundingBox.max.x - diameterDetail.boundingBox.min.x) / 2,
-            (diameterDetail.boundingBox.min.y),
+            (diameterDetail.boundingBox.max.y),
             (diameterDetail.boundingBox.max.z - diameterDetail.boundingBox.min.z) / 2
         )
-                    
-        diameterDetail.position = c.node.position
-        diameterDetail.position.y = Float(-r * 0.8 - CGFloat(nameDetail.geometry!.boundingBox.max.y - nameDetail.geometry!.boundingBox.min.y))
-
+        
         nameDetail.position = c.node.position
         nameDetail.position.y = Float(-r * 0.8)
+        
+        diameterDetail.position = c.node.position
+        diameterDetail.position.y = nameDetail.position.y
         
         rootNode.addChildNode(nameDetail)
         rootNode.addChildNode(diameterDetail)
@@ -200,30 +276,33 @@ class SizeComparisonScene: SCNScene {
     }
         
     func addReferencesToComparables() {
-        let smallestAsteroid = asteroids.min(by: { $0.diameter < $1.diameter })!
+        guard let smallestAsteroid = asteroids.min(by: { $0.diameter < $1.diameter }) else {
+            return
+        }
         for reference in references {
+            let scale = reference.diameter / smallestAsteroid.diameter
             reference.node.scale = .init(
-                reference.diameter / smallestAsteroid.diameter,
-                reference.diameter / smallestAsteroid.diameter,
-                reference.diameter / smallestAsteroid.diameter
+                scale,
+                scale,
+                scale
             )
         }
 
-        let maxNReferences = min(asteroids.count / 5, references.count)
+        let maxNReferences = min(100, references.count)
         var i = 1
         while i <= maxNReferences {
             let reference = references.randomElement()!
             if !comparables.contains(where: { $0 == reference }) {
                 comparables.append(reference)
+                i += 1
             }
-            i += 1
         }
     }
     
     func initComparables() {
         addAsteroidsToComparables()
         addReferencesToComparables()
-                
+                        
         var prevX: CGFloat = 0
         var prevDiameter: CGFloat = 0
         let comparablesSorted = comparables.sorted(
@@ -234,13 +313,7 @@ class SizeComparisonScene: SCNScene {
         for c in comparablesSorted {
             print("diameter: \(c.diameter)")
             
-            var r: CGFloat = 0
-            
-            if let _ = c.node.geometry?.firstMaterial?.displacement.intensity {
-                r = CGFloat(c.node.boundingBox.max.y - c.node.boundingBox.min.y) / 2
-            } else {
-                r = CGFloat(Float(c.node.height / 2))
-            }
+            let r = CGFloat(Float(c.node.height / 2))
             
             let diameter = r * 2
             
@@ -289,10 +362,10 @@ class SizeComparisonScene: SCNScene {
         case (nil, .some(_)):
             let r = comparables[0]
             var rPos = r.position
-            rPos.z = r.position.z + (Float(r.depth) / 2) * 6
+            rPos.z = r.position.z + (Float(r.height) / 2) * 6
             var lPos = r.position
             lPos.x = r.position.x - 0.001
-            lPos.z = r.position.z + (Float(r.depth) / 2) * 6
+            lPos.z = r.position.z + (Float(r.height) / 2) * 6
             
             lerp(
                 p1: lPos,
@@ -304,10 +377,10 @@ class SizeComparisonScene: SCNScene {
         case (.some(_), nil):
             let l = comparables[comparables.count - 1]
             var lPos = l.position
-            lPos.z = l.position.z + (Float(l.depth) / 2) * 6
+            lPos.z = l.position.z + (Float(l.height) / 2) * 6
             var rPos = cameraNode.position
             rPos.x = cameraNode.position.x + 1
-            rPos.z = l.position.z + (Float(l.depth) / 2) * 6
+            rPos.z = l.position.z + (Float(l.height) / 2) * 6
             
             lerp(
                 p1: lPos,
@@ -318,9 +391,9 @@ class SizeComparisonScene: SCNScene {
 
         case (.some(let l), .some(let r)):
             var lPos = l.position
-            lPos.z = l.position.z + (Float(l.depth) / 2) * 6
+            lPos.z = l.position.z + (Float(l.height) / 2) * 6
             var rPos = r.position
-            rPos.z = r.position.z + (Float(r.depth) / 2) * 6
+            rPos.z = r.position.z + (Float(r.height) / 2) * 6
             
             lerp(
                 p1: lPos,
@@ -349,7 +422,7 @@ class SizeComparisonScene: SCNScene {
         let rPosY = p2.y
         
         let lerpZ = lPosZ * (1 - (currentX - lPosX) / (rPosX - lPosX)) + rPosZ * (currentX - lPosX) / (rPosX - lPosX)
-                
+        
         prevLerpZ = lerpZ
         
         print("lerpZ: \(lerpZ)")

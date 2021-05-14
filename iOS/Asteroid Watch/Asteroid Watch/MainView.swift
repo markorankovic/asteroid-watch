@@ -15,12 +15,26 @@ public class UserData: ObservableObject {
     @Published var loading: Bool = false
 }
 
+let api = NASAAPI()
+
 struct MainView: View {
     @State var errorOccurred: Bool
     
     @StateObject var userData = UserData()
                     
     var body: some View {
+//        Group {
+//            let scene: SizeComparisonScene = {
+//                let s = SizeComparisonScene(
+//                    asteroids: jsonExampleToAsteroids()
+//                )
+//                userData.comparisonScene = s
+//                return s
+//            }()
+//            ComparisonSequenceView(
+//                comparisonScene: scene
+//            )
+//        }
         if userData.asteroids.isEmpty && (!userData.loading || errorOccurred) {
             SearchView(errorOccurred: $errorOccurred)
                 .environmentObject(userData)
