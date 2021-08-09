@@ -211,7 +211,7 @@ class SizeComparisonScene: SCNScene {
 
         return sphere
     }
-        
+    
     func initDetails(c: SizeComparable, r: CGFloat, diameter: CGFloat) {
         let str = "\(c.name)"
         let fontsize = diameter / 7

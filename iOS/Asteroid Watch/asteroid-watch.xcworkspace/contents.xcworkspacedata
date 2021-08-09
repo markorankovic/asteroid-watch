@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../AsteroidSpeedComparison/AsteroidSpeedComparison.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../RaceTrackExp.playground">
+   </FileRef>
+   <FileRef
+      location = "group:../SpeedComparison">
+   </FileRef>
+   <FileRef
       location = "group:../LoadingScreen/LoadingScreen.xcodeproj">
    </FileRef>
    <FileRef
