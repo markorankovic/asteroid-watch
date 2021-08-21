@@ -4,11 +4,11 @@ import SceneKit
 struct ContentView: View {
     var body: some View {
         SceneView(
-            scene: SpeedComparisonScene(),
+            scene: SpeedComparisonScene(asteroids: []),
             options: [.allowsCameraControl],
             preferredFramesPerSecond: 60,
             antialiasingMode: .multisampling4X
-        )
+        ).ignoresSafeArea()
     }
 }
 

@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD694DFF26C1E0A00057CC3E /* SizeComparison.scn in Resources */ = {isa = PBXBuildFile; fileRef = AD694DFE26C1E0A00057CC3E /* SizeComparison.scn */; };
+		AD694E0226C1E1F20057CC3E /* AsteroidWatchAPI in Frameworks */ = {isa = PBXBuildFile; productRef = AD694E0126C1E1F20057CC3E /* AsteroidWatchAPI */; };
+		AD694E0426C1E8140057CC3E /* Images in Resources */ = {isa = PBXBuildFile; fileRef = AD694E0326C1E8140057CC3E /* Images */; };
 		ADB18C6B26C04071006407FC /* AsteroidSpeedComparisonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB18C6A26C04071006407FC /* AsteroidSpeedComparisonApp.swift */; };
 		ADB18C6D26C04071006407FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB18C6C26C04071006407FC /* ContentView.swift */; };
 		ADB18C6F26C04074006407FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB18C6E26C04074006407FC /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 		ADB18C7D26C04075006407FC /* AsteroidSpeedComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB18C7C26C04075006407FC /* AsteroidSpeedComparisonTests.swift */; };
 		ADB18C8826C04075006407FC /* AsteroidSpeedComparisonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB18C8726C04075006407FC /* AsteroidSpeedComparisonUITests.swift */; };
 		ADB18C9626C045E2006407FC /* SpeedComparisonScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB18C9526C045E2006407FC /* SpeedComparisonScene.swift */; };
+		ADFCE4B726CC621E009B85B2 /* ScnSceneExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCE4B626CC621E009B85B2 /* ScnSceneExt.swift */; };
+		ADFCE4B926CC687A009B85B2 /* models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = ADFCE4B826CC687A009B85B2 /* models.scnassets */; };
+		ADFF8CE626D1987D00C5C1A7 /* SizeComparison2.scn in Resources */ = {isa = PBXBuildFile; fileRef = ADFF8CE526D1987D00C5C1A7 /* SizeComparison2.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD694DFE26C1E0A00057CC3E /* SizeComparison.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = SizeComparison.scn; path = "../../Asteroid Watch/Asteroid Watch/SizeComparison.scn"; sourceTree = "<group>"; };
+		AD694E0326C1E8140057CC3E /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = "../../Asteroid Watch/Asteroid Watch/Images"; sourceTree = "<group>"; };
 		ADB18C6726C04071006407FC /* AsteroidSpeedComparison.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidSpeedComparison.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB18C6A26C04071006407FC /* AsteroidSpeedComparisonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidSpeedComparisonApp.swift; sourceTree = "<group>"; };
 		ADB18C6C26C04071006407FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,6 +55,9 @@
 		ADB18C8726C04075006407FC /* AsteroidSpeedComparisonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidSpeedComparisonUITests.swift; sourceTree = "<group>"; };
 		ADB18C8926C04075006407FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB18C9526C045E2006407FC /* SpeedComparisonScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedComparisonScene.swift; sourceTree = "<group>"; };
+		ADFCE4B626CC621E009B85B2 /* ScnSceneExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScnSceneExt.swift; sourceTree = "<group>"; };
+		ADFCE4B826CC687A009B85B2 /* models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = models.scnassets; sourceTree = "<group>"; };
+		ADFF8CE526D1987D00C5C1A7 /* SizeComparison2.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SizeComparison2.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD694E0226C1E1F20057CC3E /* AsteroidWatchAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +86,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD694E0026C1E1F20057CC3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ADB18C5E26C04071006407FC = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +100,7 @@
 				ADB18C7B26C04075006407FC /* AsteroidSpeedComparisonTests */,
 				ADB18C8626C04075006407FC /* AsteroidSpeedComparisonUITests */,
 				ADB18C6826C04071006407FC /* Products */,
+				AD694E0026C1E1F20057CC3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +117,17 @@
 		ADB18C6926C04071006407FC /* AsteroidSpeedComparison */ = {
 			isa = PBXGroup;
 			children = (
+				ADFF8CE526D1987D00C5C1A7 /* SizeComparison2.scn */,
+				AD694E0326C1E8140057CC3E /* Images */,
+				AD694DFE26C1E0A00057CC3E /* SizeComparison.scn */,
 				ADB18C6A26C04071006407FC /* AsteroidSpeedComparisonApp.swift */,
 				ADB18C6C26C04071006407FC /* ContentView.swift */,
 				ADB18C6E26C04074006407FC /* Assets.xcassets */,
 				ADB18C7326C04074006407FC /* Info.plist */,
 				ADB18C7026C04074006407FC /* Preview Content */,
 				ADB18C9526C045E2006407FC /* SpeedComparisonScene.swift */,
+				ADFCE4B626CC621E009B85B2 /* ScnSceneExt.swift */,
+				ADFCE4B826CC687A009B85B2 /* models.scnassets */,
 			);
 			path = AsteroidSpeedComparison;
 			sourceTree = "<group>";
@@ -149,6 +174,9 @@
 			dependencies = (
 			);
 			name = AsteroidSpeedComparison;
+			packageProductDependencies = (
+				AD694E0126C1E1F20057CC3E /* AsteroidWatchAPI */,
+			);
 			productName = AsteroidSpeedComparison;
 			productReference = ADB18C6726C04071006407FC /* AsteroidSpeedComparison.app */;
 			productType = "com.apple.product-type.application";
@@ -236,7 +264,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD694E0426C1E8140057CC3E /* Images in Resources */,
 				ADB18C7226C04074006407FC /* Preview Assets.xcassets in Resources */,
+				AD694DFF26C1E0A00057CC3E /* SizeComparison.scn in Resources */,
+				ADFF8CE626D1987D00C5C1A7 /* SizeComparison2.scn in Resources */,
+				ADFCE4B926CC687A009B85B2 /* models.scnassets in Resources */,
 				ADB18C6F26C04074006407FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +297,7 @@
 				ADB18C6D26C04071006407FC /* ContentView.swift in Sources */,
 				ADB18C9626C045E2006407FC /* SpeedComparisonScene.swift in Sources */,
 				ADB18C6B26C04071006407FC /* AsteroidSpeedComparisonApp.swift in Sources */,
+				ADFCE4B726CC621E009B85B2 /* ScnSceneExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +617,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD694E0126C1E1F20057CC3E /* AsteroidWatchAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AsteroidWatchAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ADB18C5F26C04071006407FC /* Project object */;
 }
