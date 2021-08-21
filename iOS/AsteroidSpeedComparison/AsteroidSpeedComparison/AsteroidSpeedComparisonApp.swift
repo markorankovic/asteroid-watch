@@ -4,7 +4,7 @@ import SwiftUI
 struct AsteroidSpeedComparisonApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(asteroids: [])
         }
     }
 }
