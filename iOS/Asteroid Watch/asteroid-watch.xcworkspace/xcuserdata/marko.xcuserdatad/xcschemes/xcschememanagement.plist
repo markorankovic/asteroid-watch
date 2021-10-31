@@ -4,9 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MyPlayground (Playground) 1.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>MyPlayground (Playground) 2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>MyPlayground (Playground).xcscheme</key>
 		<dict>
-<<<<<<< Updated upstream
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
@@ -30,25 +43,57 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-=======
->>>>>>> Stashed changes
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
-		<key>PointsVisualized (Playground).xcscheme</key>
+		<key>PointsVisualized (Playground) 4.xcscheme</key>
 		<dict>
-<<<<<<< Updated upstream
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>9</integer>
+		</dict>
+		<key>PointsVisualized (Playground) 5.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>PointsVisualized (Playground).xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>RaceTrackExp (Playground) 1.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>RaceTrackExp (Playground) 2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>RaceTrackExp (Playground) 3.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>RaceTrackExp (Playground).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>6</integer>
 		</dict>
 		<key>test (Playground) 1.xcscheme</key>
 		<dict>
@@ -75,24 +120,22 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-=======
->>>>>>> Stashed changes
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
-		<key>RaceTrackExp (Playground).xcscheme</key>
+		<key>test (Playground) 5.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>10</integer>
 		</dict>
 		<key>test (Playground).xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-<<<<<<< Updated upstream
-			<integer>5</integer>
-=======
 			<integer>7</integer>
->>>>>>> Stashed changes
 		</dict>
 	</dict>
 </dict>
